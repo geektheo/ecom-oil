@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
-/public/storage
+/public/storage/**
+!/public/storage/general/
+!/public/storage/general/kharif-*
 /storage/*.key
 /vendor
 .DS_Store
@@ -34,7 +36,6 @@ bun.lockb
 public/mix-manifest.json
 
 public/themes
-public/docs
 resources/docs
 
 .phpunit.result.cache
@@ -46,6 +47,19 @@ resources/docs
 
 /lang/*
 !/lang/en
+!/lang/vendor/
+/lang/vendor/**
+!/lang/vendor/packages/
+!/lang/vendor/packages/api/
+!/lang/vendor/packages/api/en/
+!/lang/vendor/packages/api/en/**
+!/lang/vendor/plugins/
+!/lang/vendor/plugins/ecommerce/
+!/lang/vendor/plugins/ecommerce/en/
+!/lang/vendor/plugins/ecommerce/en/**
+!/lang/vendor/plugins/marketplace/
+!/lang/vendor/plugins/marketplace/en/
+!/lang/vendor/plugins/marketplace/en/**
 
 /log
 

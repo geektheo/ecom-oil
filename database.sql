@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.4.4, for macos15 (arm64)
+-- MySQL dump 10.13  Distrib 26.7.0, for macos27.0 (arm64)
 --
--- Host: 127.0.0.1    Database: nest
+-- Host: localhost    Database: laravel
 -- ------------------------------------------------------
--- Server version	8.4.4
+-- Server version	26.7.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `activations`;
 CREATE TABLE `activations` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `code` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `completed` tinyint(1) NOT NULL DEFAULT '0',
   `completed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -54,14 +54,14 @@ DROP TABLE IF EXISTS `admin_notifications`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin_notifications` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `action_label` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action_label` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `permission` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `permission` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,22 +84,22 @@ DROP TABLE IF EXISTS `ads`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ads` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expired_at` datetime DEFAULT NULL,
-  `location` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `key` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `clicked` bigint NOT NULL DEFAULT '0',
   `order` int DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `open_in_new_tab` tinyint(1) NOT NULL DEFAULT '1',
-  `tablet_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ads_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `google_adsense_slot_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tablet_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ads_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `google_adsense_slot_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ads_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -123,13 +123,13 @@ DROP TABLE IF EXISTS `ads_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ads_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ads_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tablet_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tablet_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ads_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,23 +153,23 @@ DROP TABLE IF EXISTS `audit_histories`;
 CREATE TABLE `audit_histories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'Botble\\ACL\\Models\\User',
-  `module` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `request` longtext COLLATE utf8mb4_unicode_ci,
-  `action` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Botble\\ACL\\Models\\User',
+  `module` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `action` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `actor_id` bigint unsigned NOT NULL,
-  `actor_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'Botble\\ACL\\Models\\User',
+  `actor_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Botble\\ACL\\Models\\User',
   `reference_id` bigint unsigned NOT NULL,
-  `reference_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `audit_histories_user_id_index` (`user_id`),
   KEY `audit_histories_module_index` (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,6 +178,7 @@ CREATE TABLE `audit_histories` (
 
 LOCK TABLES `audit_histories` WRITE;
 /*!40000 ALTER TABLE `audit_histories` DISABLE KEYS */;
+INSERT INTO `audit_histories` VALUES (1,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:05:47','2026-10-20 07:05:47'),(2,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:05:47','2026-10-20 07:05:47'),(3,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Cursor/3.21.18 Chrome/148.0.7778.280 Electron/42.10.0 Safari/537.36','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:10:45','2026-10-20 07:10:45'),(4,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Cursor/3.21.18 Chrome/148.0.7778.280 Electron/42.10.0 Safari/537.36','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:10:45','2026-10-20 07:10:45'),(5,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:45','2026-10-20 07:21:45'),(6,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:45','2026-10-20 07:21:45'),(7,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:51','2026-10-20 07:21:51'),(8,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:51','2026-10-20 07:21:51'),(9,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:57','2026-10-20 07:21:57'),(10,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:21:57','2026-10-20 07:21:57'),(11,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:22:41','2026-10-20 07:22:41'),(12,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:22:41','2026-10-20 07:22:41'),(13,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:22:50','2026-10-20 07:22:50'),(14,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:22:50','2026-10-20 07:22:50'),(15,1,'Botble\\ACL\\Models\\User','to the system',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:23:14','2026-10-20 07:23:14'),(16,1,'Botble\\ACL\\Models\\User','to the customer portal',NULL,'logged in','Symfony','127.0.0.1',1,'Botble\\ACL\\Models\\User',1,'Camron Robel','info','2026-10-20 07:23:14','2026-10-20 07:23:14');
 /*!40000 ALTER TABLE `audit_histories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,8 +190,8 @@ DROP TABLE IF EXISTS `cache`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache` (
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -213,8 +214,8 @@ DROP TABLE IF EXISTS `cache_locks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache_locks` (
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -238,13 +239,13 @@ DROP TABLE IF EXISTS `categories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent_id` bigint unsigned NOT NULL DEFAULT '0',
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `author_id` bigint unsigned DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
-  `icon` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
+  `icon` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order` int unsigned NOT NULL DEFAULT '0',
   `is_featured` tinyint NOT NULL DEFAULT '0',
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
@@ -275,10 +276,10 @@ DROP TABLE IF EXISTS `categories_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `categories_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`categories_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -301,18 +302,18 @@ DROP TABLE IF EXISTS `cities`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cities` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state_id` bigint unsigned DEFAULT NULL,
   `country_id` bigint unsigned DEFAULT NULL,
-  `record_id` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `record_id` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order` tinyint NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cities_slug_unique` (`slug`),
   KEY `idx_cities_name` (`name`),
@@ -339,10 +340,10 @@ DROP TABLE IF EXISTS `cities_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cities_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `cities_id` bigint unsigned NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`cities_id`),
   KEY `idx_cities_trans_city_lang` (`cities_id`,`lang_code`),
   KEY `idx_cities_trans_name` (`name`),
@@ -369,8 +370,8 @@ DROP TABLE IF EXISTS `contact_custom_field_options`;
 CREATE TABLE `contact_custom_field_options` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `custom_field_id` bigint unsigned NOT NULL,
-  `label` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` int NOT NULL DEFAULT '999',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -396,9 +397,9 @@ DROP TABLE IF EXISTS `contact_custom_field_options_translations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contact_custom_field_options_translations` (
   `contact_custom_field_options_id` bigint unsigned NOT NULL,
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`contact_custom_field_options_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -421,12 +422,12 @@ DROP TABLE IF EXISTS `contact_custom_fields`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contact_custom_fields` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `required` tinyint(1) NOT NULL DEFAULT '0',
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `placeholder` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `placeholder` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order` int NOT NULL DEFAULT '999',
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -451,9 +452,9 @@ DROP TABLE IF EXISTS `contact_custom_fields_translations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contact_custom_fields_translations` (
   `contact_custom_fields_id` bigint unsigned NOT NULL,
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `placeholder` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `placeholder` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`contact_custom_fields_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -476,7 +477,7 @@ DROP TABLE IF EXISTS `contact_replies`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contact_replies` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `message` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -502,14 +503,14 @@ DROP TABLE IF EXISTS `contacts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contacts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom_fields` text COLLATE utf8mb4_unicode_ci,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unread',
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `custom_fields` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unread',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -534,15 +535,15 @@ DROP TABLE IF EXISTS `countries`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `countries` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nationality` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nationality` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order` tinyint NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `code` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_countries_name` (`name`),
   KEY `idx_countries_status` (`status`)
@@ -566,10 +567,10 @@ DROP TABLE IF EXISTS `countries_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `countries_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `countries_id` bigint unsigned NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nationality` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nationality` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`countries_id`),
   KEY `idx_countries_trans_country_lang` (`countries_id`,`lang_code`),
   KEY `idx_countries_trans_name` (`name`),
@@ -595,7 +596,7 @@ DROP TABLE IF EXISTS `dashboard_widget_settings`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dashboard_widget_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `settings` text COLLATE utf8mb4_unicode_ci,
+  `settings` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `user_id` bigint unsigned NOT NULL,
   `widget_id` bigint unsigned NOT NULL,
   `order` tinyint unsigned NOT NULL DEFAULT '0',
@@ -626,11 +627,11 @@ DROP TABLE IF EXISTS `dashboard_widgets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dashboard_widgets` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,6 +640,7 @@ CREATE TABLE `dashboard_widgets` (
 
 LOCK TABLES `dashboard_widgets` WRITE;
 /*!40000 ALTER TABLE `dashboard_widgets` DISABLE KEYS */;
+INSERT INTO `dashboard_widgets` VALUES (1,'widget_total_1','2026-10-20 07:10:45','2026-10-20 07:10:45'),(2,'widget_total_2','2026-10-20 07:10:45','2026-10-20 07:10:45'),(3,'widget_total_3','2026-10-20 07:10:45','2026-10-20 07:10:45'),(4,'widget_total_4','2026-10-20 07:10:45','2026-10-20 07:10:45'),(5,'widget_total_themes','2026-10-20 07:10:45','2026-10-20 07:10:45'),(6,'widget_total_users','2026-10-20 07:10:45','2026-10-20 07:10:45'),(7,'widget_total_plugins','2026-10-20 07:10:45','2026-10-20 07:10:45'),(8,'widget_total_pages','2026-10-20 07:10:45','2026-10-20 07:10:45'),(9,'widget_posts_recent','2026-10-20 07:10:45','2026-10-20 07:10:45'),(10,'widget_audit_logs','2026-10-20 07:10:45','2026-10-20 07:10:45'),(11,'widget_ecommerce_report_general','2026-10-20 07:10:45','2026-10-20 07:10:45');
 /*!40000 ALTER TABLE `dashboard_widgets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -651,11 +653,11 @@ DROP TABLE IF EXISTS `device_tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `platform` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `app_version` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `device_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `platform` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `app_version` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `device_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `last_used_at` timestamp NULL DEFAULT NULL,
@@ -688,13 +690,13 @@ DROP TABLE IF EXISTS `ec_abandoned_carts`;
 CREATE TABLE `ec_abandoned_carts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` bigint unsigned DEFAULT NULL,
-  `session_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `session_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cart_data` json NOT NULL,
   `total_amount` decimal(15,2) NOT NULL DEFAULT '0.00',
   `items_count` int NOT NULL DEFAULT '0',
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `abandoned_at` timestamp NULL DEFAULT NULL,
   `reminder_sent_at` timestamp NULL DEFAULT NULL,
   `reminders_sent` int NOT NULL DEFAULT '0',
@@ -731,11 +733,11 @@ DROP TABLE IF EXISTS `ec_brands`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_brands` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci,
-  `website` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `website` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `order` tinyint unsigned NOT NULL DEFAULT '0',
   `is_featured` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -762,10 +764,10 @@ DROP TABLE IF EXISTS `ec_brands_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_brands_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_brands_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`ec_brands_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -787,9 +789,9 @@ DROP TABLE IF EXISTS `ec_cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_cart` (
-  `identifier` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `instance` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identifier` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instance` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`identifier`,`instance`)
@@ -814,11 +816,11 @@ DROP TABLE IF EXISTS `ec_currencies`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_currencies` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `symbol` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `symbol` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_prefix_symbol` tinyint unsigned NOT NULL DEFAULT '0',
   `decimals` tinyint unsigned DEFAULT '0',
-  `number_format_style` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'western',
+  `number_format_style` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'western',
   `space_between_price_and_currency` tinyint(1) NOT NULL DEFAULT '0',
   `order` int unsigned DEFAULT '0',
   `is_default` tinyint NOT NULL DEFAULT '0',
@@ -848,18 +850,18 @@ DROP TABLE IF EXISTS `ec_customer_addresses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_customer_addresses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_id` bigint unsigned NOT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -884,14 +886,14 @@ DROP TABLE IF EXISTS `ec_customer_deletion_requests`;
 CREATE TABLE `ec_customer_deletion_requests` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` bigint unsigned NOT NULL,
-  `customer_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `verification_code` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `verification_code` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `code_expires_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting_for_confirmation',
-  `reason` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting_for_confirmation',
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `confirmed_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -917,8 +919,8 @@ DROP TABLE IF EXISTS `ec_customer_password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_customer_password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `ec_customer_password_resets_email_index` (`email`),
   KEY `ec_customer_password_resets_token_index` (`token`)
@@ -989,23 +991,23 @@ DROP TABLE IF EXISTS `ec_customers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_customers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `confirmed_at` datetime DEFAULT NULL,
-  `email_verify_token` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activated',
-  `block_reason` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `private_notes` text COLLATE utf8mb4_unicode_ci,
+  `email_verify_token` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activated',
+  `block_reason` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `private_notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `is_vendor` tinyint(1) NOT NULL DEFAULT '0',
   `vendor_verified_at` datetime DEFAULT NULL,
-  `stripe_account_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stripe_account_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stripe_account_active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `ec_customers_is_vendor_index` (`is_vendor`),
@@ -1124,26 +1126,26 @@ DROP TABLE IF EXISTS `ec_discounts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_discounts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `total_used` int unsigned NOT NULL DEFAULT '0',
   `value` double DEFAULT NULL,
-  `type` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT 'coupon',
+  `type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'coupon',
   `can_use_with_promotion` tinyint(1) NOT NULL DEFAULT '0',
   `can_use_with_flash_sale` tinyint(1) NOT NULL DEFAULT '0',
-  `discount_on` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discount_on` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_quantity` int unsigned DEFAULT NULL,
-  `type_option` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'amount',
-  `target` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'all-orders',
+  `type_option` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'amount',
+  `target` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'all-orders',
   `min_order_price` decimal(15,2) DEFAULT NULL,
   `apply_via_url` tinyint(1) NOT NULL DEFAULT '0',
   `display_at_checkout` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `store_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_discounts_code_unique` (`code`),
@@ -1197,9 +1199,9 @@ DROP TABLE IF EXISTS `ec_flash_sales`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_flash_sales` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_date` datetime NOT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1224,9 +1226,9 @@ DROP TABLE IF EXISTS `ec_flash_sales_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_flash_sales_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_flash_sales_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_flash_sales_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1250,7 +1252,7 @@ DROP TABLE IF EXISTS `ec_global_option_value`;
 CREATE TABLE `ec_global_option_value` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `option_id` bigint unsigned NOT NULL COMMENT 'option id',
-  `option_value` tinytext COLLATE utf8mb4_unicode_ci COMMENT 'option value',
+  `option_value` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'option value',
   `affect_price` double DEFAULT NULL COMMENT 'value of price of this option affect',
   `order` int NOT NULL DEFAULT '9999',
   `affect_type` tinyint NOT NULL DEFAULT '0' COMMENT '0. fixed 1. percent',
@@ -1278,9 +1280,9 @@ DROP TABLE IF EXISTS `ec_global_option_value_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_global_option_value_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_global_option_value_id` bigint unsigned NOT NULL,
-  `option_value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `option_value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_global_option_value_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1303,8 +1305,8 @@ DROP TABLE IF EXISTS `ec_global_options`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_global_options` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of options',
-  `option_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'option type',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of options',
+  `option_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'option type',
   `required` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Checked if this option is required',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1330,9 +1332,9 @@ DROP TABLE IF EXISTS `ec_global_options_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_global_options_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_global_options_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_global_options_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1381,18 +1383,18 @@ DROP TABLE IF EXISTS `ec_invoice_items`;
 CREATE TABLE `ec_invoice_items` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `invoice_id` bigint unsigned NOT NULL,
-  `reference_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reference_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `qty` int unsigned NOT NULL,
   `price` decimal(15,2) NOT NULL DEFAULT '0.00',
   `sub_total` decimal(15,2) unsigned NOT NULL,
   `tax_amount` decimal(15,2) unsigned NOT NULL DEFAULT '0.00',
   `discount_amount` decimal(15,2) unsigned NOT NULL DEFAULT '0.00',
   `amount` decimal(15,2) unsigned NOT NULL,
-  `options` text COLLATE utf8mb4_unicode_ci,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -1418,34 +1420,34 @@ DROP TABLE IF EXISTS `ec_invoices`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_invoices` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `reference_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reference_id` bigint unsigned NOT NULL,
-  `code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_logo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_country` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_state` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_zip_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_address_line` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_tax_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_logo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_country` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_state` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_city` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_zip_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_address_line` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_tax_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_total` decimal(15,2) unsigned NOT NULL,
   `tax_amount` decimal(15,2) DEFAULT '0.00',
   `shipping_amount` decimal(15,2) unsigned NOT NULL DEFAULT '0.00',
   `payment_fee` decimal(15,2) DEFAULT '0.00',
   `discount_amount` decimal(15,2) unsigned NOT NULL DEFAULT '0.00',
-  `shipping_option` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_method` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
-  `coupon_code` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `discount_description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_option` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_method` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
+  `coupon_code` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discount_description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` decimal(15,2) unsigned NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `payment_id` bigint unsigned DEFAULT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `paid_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1477,7 +1479,7 @@ DROP TABLE IF EXISTS `ec_option_value`;
 CREATE TABLE `ec_option_value` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `option_id` bigint unsigned NOT NULL COMMENT 'option id',
-  `option_value` tinytext COLLATE utf8mb4_unicode_ci COMMENT 'option value',
+  `option_value` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'option value',
   `affect_price` double DEFAULT NULL COMMENT 'value of price of this option affect',
   `order` int NOT NULL DEFAULT '9999',
   `affect_type` tinyint NOT NULL DEFAULT '0' COMMENT '0. fixed 1. percent',
@@ -1504,9 +1506,9 @@ DROP TABLE IF EXISTS `ec_option_value_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_option_value_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_option_value_id` bigint unsigned NOT NULL,
-  `option_value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `option_value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_option_value_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1529,8 +1531,8 @@ DROP TABLE IF EXISTS `ec_options`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_options` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of options',
-  `option_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'option type',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name of options',
+  `option_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'option type',
   `product_id` bigint unsigned NOT NULL DEFAULT '0',
   `order` int NOT NULL DEFAULT '9999',
   `required` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Checked if this option is required',
@@ -1557,9 +1559,9 @@ DROP TABLE IF EXISTS `ec_options_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_options_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_options_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_options_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1582,16 +1584,16 @@ DROP TABLE IF EXISTS `ec_order_addresses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_order_addresses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order_id` bigint unsigned NOT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'shipping_address',
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'shipping_address',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_order_addresses_order_id_type_unique` (`order_id`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1615,11 +1617,11 @@ DROP TABLE IF EXISTS `ec_order_histories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_order_histories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `action` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `order_id` bigint unsigned NOT NULL,
-  `extras` text COLLATE utf8mb4_unicode_ci,
+  `extras` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1645,8 +1647,8 @@ DROP TABLE IF EXISTS `ec_order_metadata`;
 CREATE TABLE `ec_order_metadata` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `order_id` bigint unsigned NOT NULL,
-  `meta_key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_value` text COLLATE utf8mb4_unicode_ci,
+  `meta_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -1677,18 +1679,18 @@ CREATE TABLE `ec_order_product` (
   `qty` int NOT NULL,
   `price` decimal(15,2) NOT NULL,
   `tax_amount` decimal(15,2) DEFAULT '0.00',
-  `options` text COLLATE utf8mb4_unicode_ci,
-  `product_options` text COLLATE utf8mb4_unicode_ci COMMENT 'product option data',
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `product_options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'product option data',
   `product_id` bigint unsigned DEFAULT NULL,
-  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `weight` double DEFAULT '0',
   `restock_quantity` int unsigned DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `product_type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'physical',
+  `product_type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'physical',
   `times_downloaded` int NOT NULL DEFAULT '0',
-  `license_code` text COLLATE utf8mb4_unicode_ci,
+  `license_code` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `downloaded_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ec_order_product_order_id_product_id_index` (`order_id`,`product_id`)
@@ -1713,20 +1715,20 @@ DROP TABLE IF EXISTS `ec_order_referrals`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_order_referrals` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `landing_domain` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `landing_page` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `landing_params` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `referral` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gclid` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fclid` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `utm_source` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `utm_campaign` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `utm_medium` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `utm_term` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `utm_content` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `referrer_url` text COLLATE utf8mb4_unicode_ci,
-  `referrer_domain` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip` varchar(39) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `landing_domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `landing_page` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `landing_params` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referral` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gclid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fclid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `utm_source` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `utm_campaign` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `utm_medium` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `utm_term` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `utm_content` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `referrer_domain` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order_id` bigint unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1755,9 +1757,9 @@ CREATE TABLE `ec_order_return_histories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned DEFAULT NULL,
   `order_return_id` bigint unsigned NOT NULL,
-  `action` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reason` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reason` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1785,11 +1787,11 @@ CREATE TABLE `ec_order_return_items` (
   `order_return_id` bigint unsigned NOT NULL COMMENT 'Order return id',
   `order_product_id` bigint unsigned NOT NULL COMMENT 'Order product id',
   `product_id` bigint unsigned NOT NULL COMMENT 'Product id',
-  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `qty` int NOT NULL COMMENT 'Quantity return',
   `price` decimal(15,2) NOT NULL COMMENT 'Price Product',
-  `reason` text COLLATE utf8mb4_unicode_ci,
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `refund_amount` decimal(12,2) DEFAULT '0.00',
@@ -1815,13 +1817,13 @@ DROP TABLE IF EXISTS `ec_order_returns`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_order_returns` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order_id` bigint unsigned NOT NULL COMMENT 'Order ID',
   `store_id` bigint unsigned DEFAULT NULL COMMENT 'Store ID',
   `user_id` bigint unsigned NOT NULL COMMENT 'Customer ID',
-  `reason` text COLLATE utf8mb4_unicode_ci COMMENT 'Reason return order',
-  `order_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Order current status',
-  `return_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Return status',
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT 'Reason return order',
+  `order_status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Order current status',
+  `return_status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Return status',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -1848,10 +1850,10 @@ DROP TABLE IF EXISTS `ec_order_tax_information`;
 CREATE TABLE `ec_order_tax_information` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `order_id` bigint unsigned NOT NULL,
-  `company_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_tax_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_tax_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -1877,31 +1879,31 @@ DROP TABLE IF EXISTS `ec_orders`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_orders` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `shipping_option` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_method` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
-  `status` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `shipping_option` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_method` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
+  `status` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `amount` decimal(15,2) NOT NULL,
   `tax_amount` decimal(15,2) DEFAULT '0.00',
   `shipping_amount` decimal(15,2) DEFAULT NULL,
   `payment_fee` decimal(15,2) DEFAULT '0.00',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `coupon_code` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `coupon_code` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `discount_amount` decimal(15,2) DEFAULT NULL,
   `sub_total` decimal(15,2) NOT NULL,
   `is_confirmed` tinyint(1) NOT NULL DEFAULT '0',
-  `discount_description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discount_description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_finished` tinyint(1) DEFAULT '0',
-  `cancellation_reason` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cancellation_reason_description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cancellation_reason` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cancellation_reason_description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `completed_at` timestamp NULL DEFAULT NULL,
-  `token` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `token` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_id` bigint unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `proof_file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `private_notes` text COLLATE utf8mb4_unicode_ci,
+  `proof_file` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `private_notes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `store_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_orders_code_unique` (`code`),
@@ -1931,13 +1933,13 @@ DROP TABLE IF EXISTS `ec_product_attribute_sets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_attribute_sets` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `display_layout` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'dropdown',
+  `title` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `display_layout` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'dropdown',
   `is_searchable` tinyint unsigned NOT NULL DEFAULT '1',
   `is_comparable` tinyint unsigned NOT NULL DEFAULT '1',
   `is_use_in_product_listing` tinyint unsigned NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `order` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1965,9 +1967,9 @@ DROP TABLE IF EXISTS `ec_product_attribute_sets_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_attribute_sets_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_attribute_sets_id` bigint unsigned NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_product_attribute_sets_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1991,10 +1993,10 @@ DROP TABLE IF EXISTS `ec_product_attributes`;
 CREATE TABLE `ec_product_attributes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `attribute_set_id` bigint unsigned NOT NULL,
-  `title` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
   `order` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2024,9 +2026,9 @@ DROP TABLE IF EXISTS `ec_product_attributes_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_attributes_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_attributes_id` bigint unsigned NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_product_attributes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2049,18 +2051,18 @@ DROP TABLE IF EXISTS `ec_product_categories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_categories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` bigint unsigned NOT NULL DEFAULT '0',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `order` int unsigned NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_featured` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `icon` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ec_product_categories_parent_id_status_created_at_index` (`parent_id`,`status`,`created_at`),
   KEY `ec_product_categories_parent_id_status_index` (`parent_id`,`status`),
@@ -2094,11 +2096,11 @@ DROP TABLE IF EXISTS `ec_product_categories_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_categories_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_categories_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`ec_product_categories_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2122,7 +2124,7 @@ DROP TABLE IF EXISTS `ec_product_categorizables`;
 CREATE TABLE `ec_product_categorizables` (
   `category_id` bigint unsigned NOT NULL,
   `reference_id` bigint unsigned NOT NULL,
-  `reference_type` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_type` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`category_id`,`reference_id`,`reference_type`),
   KEY `ec_product_categorizables_category_id_index` (`category_id`),
   KEY `ec_product_categorizables_reference_id_index` (`reference_id`),
@@ -2204,11 +2206,11 @@ DROP TABLE IF EXISTS `ec_product_collections`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_collections` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_featured` tinyint unsigned NOT NULL DEFAULT '0',
@@ -2234,10 +2236,10 @@ DROP TABLE IF EXISTS `ec_product_collections_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_collections_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_collections_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_product_collections_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2263,7 +2265,7 @@ CREATE TABLE `ec_product_cross_sale_relations` (
   `to_product_id` bigint unsigned NOT NULL,
   `is_variant` tinyint(1) NOT NULL DEFAULT '0',
   `price` decimal(15,2) DEFAULT '0.00',
-  `price_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'fixed',
+  `price_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'fixed',
   `apply_to_all_variations` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`from_product_id`,`to_product_id`),
   KEY `ec_product_cross_sale_relations_from_product_id_index` (`from_product_id`),
@@ -2292,8 +2294,8 @@ DROP TABLE IF EXISTS `ec_product_files`;
 CREATE TABLE `ec_product_files` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `product_id` bigint unsigned DEFAULT NULL,
-  `url` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `extras` mediumtext COLLATE utf8mb4_unicode_ci,
+  `url` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `extras` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -2346,12 +2348,12 @@ DROP TABLE IF EXISTS `ec_product_labels`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_labels` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `text_color` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text_color` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2374,10 +2376,10 @@ DROP TABLE IF EXISTS `ec_product_labels_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_labels_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_labels_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_product_labels_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2401,8 +2403,8 @@ DROP TABLE IF EXISTS `ec_product_license_codes`;
 CREATE TABLE `ec_product_license_codes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `product_id` bigint unsigned NOT NULL,
-  `license_code` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'available',
+  `license_code` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'available',
   `assigned_order_product_id` bigint unsigned DEFAULT NULL,
   `assigned_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2456,7 +2458,7 @@ DROP TABLE IF EXISTS `ec_product_specification_attribute`;
 CREATE TABLE `ec_product_specification_attribute` (
   `product_id` bigint unsigned NOT NULL,
   `attribute_id` bigint unsigned NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `hidden` tinyint(1) NOT NULL DEFAULT '0',
   `order` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`attribute_id`)
@@ -2484,8 +2486,8 @@ CREATE TABLE `ec_product_specification_attribute_translations` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `product_id` bigint unsigned NOT NULL,
   `attribute_id` bigint unsigned NOT NULL,
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -2540,9 +2542,9 @@ DROP TABLE IF EXISTS `ec_product_tags`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_tags` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -2567,9 +2569,9 @@ DROP TABLE IF EXISTS `ec_product_tags_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_product_tags_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_product_tags_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_product_tags_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2685,7 +2687,7 @@ CREATE TABLE `ec_product_views` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_product_views_product_id_date_unique` (`product_id`,`date`),
   KEY `ec_product_views_product_id_index` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2694,6 +2696,7 @@ CREATE TABLE `ec_product_views` (
 
 LOCK TABLES `ec_product_views` WRITE;
 /*!40000 ALTER TABLE `ec_product_views` DISABLE KEYS */;
+INSERT INTO `ec_product_views` VALUES (1,14,1,'2026-10-20');
 /*!40000 ALTER TABLE `ec_product_views` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2731,19 +2734,19 @@ DROP TABLE IF EXISTS `ec_products`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_products` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
-  `images` text COLLATE utf8mb4_unicode_ci,
-  `video_media` text COLLATE utf8mb4_unicode_ci,
-  `sku` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `images` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `video_media` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `sku` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order` int unsigned NOT NULL DEFAULT '0',
   `quantity` int unsigned DEFAULT NULL,
   `allow_checkout_when_out_of_stock` tinyint unsigned NOT NULL DEFAULT '0',
   `with_storehouse_management` tinyint unsigned NOT NULL DEFAULT '0',
-  `stock_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'in_stock',
+  `stock_status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'in_stock',
   `is_featured` tinyint unsigned NOT NULL DEFAULT '0',
   `brand_id` bigint unsigned DEFAULT NULL,
   `is_variation` tinyint NOT NULL DEFAULT '0',
@@ -2764,14 +2767,14 @@ CREATE TABLE `ec_products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by_id` bigint unsigned DEFAULT '0',
-  `created_by_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_type` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT 'physical',
-  `barcode` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'physical',
+  `barcode` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cost_per_item` double DEFAULT NULL,
   `price_includes_tax` tinyint(1) NOT NULL DEFAULT '0',
   `generate_license_code` tinyint(1) NOT NULL DEFAULT '0',
-  `license_code_type` enum('auto_generate','pick_from_list') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'auto_generate',
+  `license_code_type` enum('auto_generate','pick_from_list') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'auto_generate',
   `minimum_order_quantity` int unsigned DEFAULT '0',
   `maximum_order_quantity` int unsigned DEFAULT '0',
   `notify_attachment_updated` tinyint(1) NOT NULL DEFAULT '0',
@@ -2808,7 +2811,7 @@ CREATE TABLE `ec_products` (
 
 LOCK TABLES `ec_products` WRITE;
 /*!40000 ALTER TABLE `ec_products` DISABLE KEYS */;
-INSERT INTO `ec_products` VALUES (1,'Seeds of Change Organic Quinoe','seeds-of-change-organic-quinoe','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/1.jpg\",\"products\\/1-1.jpg\"]',NULL,'0N-108',0,16,0,1,'in_stock',1,4,0,0,10,2.40,0,1151,653,NULL,NULL,17,13,10,848,NULL,130043,'2025-11-20 01:47:48','2025-11-20 01:48:07',0,'Botble\\ACL\\Models\\User',NULL,'physical','9719473541231',NULL,0,0,'auto_generate',0,0,0,1,2,0),(2,'All Natural Italian-Style Chicken Meatballs','all-natural-italian-style-chicken-meatballs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/2.jpg\",\"products\\/2-1.jpg\"]',NULL,'XO-164-A1',0,12,0,1,'in_stock',1,1,0,2,10,2.90,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,173153,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','0089926560928',NULL,0,0,'auto_generate',0,0,0,1,2,0),(3,'Angie’s Boomchickapop Sweet &amp; Salty Kettle Corn','angies-boomchickapop-sweet-salty-kettle-corn','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/3.jpg\",\"products\\/3-1.jpg\"]',NULL,'AV-143',0,14,0,1,'in_stock',1,6,0,0,10,3.50,0,1614,190,NULL,NULL,16,19,13,572,NULL,149485,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6915554775240',NULL,0,0,'auto_generate',0,0,0,1,1,0),(4,'Foster Farms Takeout Crispy Classic (Digital)','foster-farms-takeout-crispy-classic','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/4.jpg\",\"products\\/4-1.jpg\"]',NULL,'RS-183',0,17,0,1,'in_stock',1,7,0,0,10,4.10,0,1286,1246,NULL,NULL,18,14,12,672,NULL,78565,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3413835779404',NULL,0,0,'auto_generate',0,0,0,2,1,0),(5,'Blue Diamond Almonds Lightly','blue-diamond-almonds-lightly','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/5.jpg\",\"products\\/5-1.jpg\"]',NULL,'IT-178-A1',0,20,0,1,'in_stock',1,4,0,3,10,3.70,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,131106,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4948065674933',NULL,0,0,'auto_generate',0,0,0,1,1,0),(6,'Chobani Complete Vanilla Greek','chobani-complete-vanilla-greek','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/6.jpg\",\"products\\/6-1.jpg\"]',NULL,'RI-121',0,20,0,1,'in_stock',1,5,0,0,10,2.80,0,382,325,NULL,NULL,11,19,17,825,NULL,30553,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9388293038988',NULL,0,0,'auto_generate',0,0,0,2,1,0),(7,'Canada Dry Ginger Ale – 2 L Bottle','canada-dry-ginger-ale-2-l-bottle','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/7.jpg\",\"products\\/7-1.jpg\"]',NULL,'WB-184',0,14,0,1,'in_stock',1,1,0,0,10,3.60,0,305,118,NULL,NULL,17,19,16,707,NULL,117519,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4900543687699',NULL,0,0,'auto_generate',0,0,0,1,2,0),(8,'Encore Seafoods Stuffed Alaskan (Digital)','encore-seafoods-stuffed-alaskan','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/8.jpg\",\"products\\/8-1.jpg\"]',NULL,'GV-136-A1',0,15,0,1,'in_stock',1,1,0,3,10,2.70,0,1197,885.78,NULL,NULL,17,15,13,735,NULL,98534,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2631499051884',NULL,0,0,'auto_generate',0,0,0,1,1,0),(9,'Gorton’s Beer Battered Fish Fillets','gortons-beer-battered-fish-fillets','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/9.jpg\",\"products\\/9-1.jpg\"]',NULL,'3Z-155',0,18,0,1,'in_stock',1,3,0,0,10,3.10,0,1509,1406,NULL,NULL,14,12,20,841,NULL,158789,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4087871958872',NULL,0,0,'auto_generate',0,0,0,1,2,0),(10,'Haagen-Dazs Caramel Cone Ice Cream','haagen-dazs-caramel-cone-ice-cream','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/10.jpg\",\"products\\/10-1.jpg\"]',NULL,'1R-136-A1',0,19,0,1,'in_stock',1,2,0,4,10,3.80,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,166064,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6016280988123',NULL,0,0,'auto_generate',0,0,0,1,2,0),(11,'Nestle Original Coffee-Mate Coffee Creamer','nestle-original-coffee-mate-coffee-creamer','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/11.jpg\",\"products\\/11-1.jpg\"]',NULL,'1Z-163-A1',0,15,0,1,'in_stock',1,4,0,2,10,3.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,155536,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8210992610084',NULL,0,0,'auto_generate',0,0,0,1,4,0),(12,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)','naturally-flavored-cinnamon-vanilla-light-roast-coffee','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/12.jpg\",\"products\\/12-1.jpg\"]',NULL,'NU-174-A1',0,19,0,1,'in_stock',1,4,0,3,10,3.10,0,2215,1705.55,NULL,NULL,11,16,10,528,NULL,126046,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','0825851650941',NULL,0,0,'auto_generate',0,0,0,2,1,0),(13,'Pepperidge Farm Farmhouse Hearty White Bread','pepperidge-farm-farmhouse-hearty-white-bread','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/13.jpg\",\"products\\/13-1.jpg\"]',NULL,'MQ-102-A1',0,18,0,1,'in_stock',1,3,0,4,10,2.80,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,126585,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6633276015993',NULL,0,0,'auto_generate',0,0,0,1,2,0),(14,'Organic Frozen Triple Berry Blend','organic-frozen-triple-berry-blend','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/14.jpg\",\"products\\/14-1.jpg\"]',NULL,'LU-188',0,13,0,1,'in_stock',1,1,0,0,10,3.60,0,1092,980,NULL,NULL,12,18,20,845,NULL,182403,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7415881647139',NULL,0,0,'auto_generate',0,0,0,2,1,0),(15,'Oroweat Country Buttermilk Bread','oroweat-country-buttermilk-bread','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/15.jpg\",\"products\\/15-1.jpg\"]',NULL,'3P-135-A1',0,12,0,1,'in_stock',1,7,0,3,10,2.70,0,829,NULL,NULL,NULL,12,13,19,754,NULL,194907,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5963327344545',NULL,0,0,'auto_generate',0,0,0,1,3,0),(16,'Foster Farms Takeout Crispy Classic Buffalo Wings (Digital)','foster-farms-takeout-crispy-classic-buffalo-wings','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/16.jpg\",\"products\\/16-1.jpg\",\"products\\/16-2.jpg\",\"products\\/16-3.jpg\",\"products\\/16-4.jpg\",\"products\\/16-5.jpg\",\"products\\/16-6.jpg\"]',NULL,'BD-141',0,11,0,1,'in_stock',1,2,0,0,10,2.90,0,2050,1471,NULL,NULL,17,16,11,537,NULL,85747,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','6872882581175',NULL,0,0,'auto_generate',0,0,0,2,1,0),(17,'Angie’s Boomchickapop Sweet &amp; Salty Kettle Corn','angies-boomchickapop-sweet-salty-kettle-corn','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/17.jpg\",\"products\\/17-1.jpg\"]',NULL,'3G-152',0,17,0,1,'in_stock',1,3,0,0,10,2.40,0,255,149,NULL,NULL,18,19,11,839,NULL,30798,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','3554439923760',NULL,0,0,'auto_generate',0,0,0,2,1,0),(18,'All Natural Italian-Style Chicken Meatballs','all-natural-italian-style-chicken-meatballs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/18.jpg\",\"products\\/18-1.jpg\"]',NULL,'QK-155',0,16,0,1,'in_stock',1,5,0,0,10,2.30,0,506,229,NULL,NULL,11,11,12,869,NULL,162579,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','3746213827009',NULL,0,0,'auto_generate',0,0,0,1,4,0),(19,'Simply Lemonade with Raspberry Juice','simply-lemonade-with-raspberry-juice','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/19.jpg\",\"products\\/19-1.jpg\"]',NULL,'E7-160',0,14,0,1,'in_stock',1,4,0,0,10,2.60,0,386,61,NULL,NULL,16,19,20,693,NULL,10953,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6706467776024',NULL,0,0,'auto_generate',0,0,0,2,1,0),(20,'Perdue Simply Smart Organics Gluten Free (Digital)','perdue-simply-smart-organics-gluten-free','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/20.jpg\",\"products\\/20-1.jpg\"]',NULL,'LN-140-A1',0,20,0,1,'in_stock',1,6,0,2,10,3.30,0,2309,1985.74,NULL,NULL,13,15,17,774,NULL,92413,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','7733103503149',NULL,0,0,'auto_generate',0,0,0,1,2,0),(21,'Chen Watermelon','chen-watermelon','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/21.jpg\",\"products\\/21-1.jpg\"]',NULL,'XG-110',0,12,0,1,'in_stock',1,1,0,0,10,2.50,0,1054,421,NULL,NULL,18,18,13,525,NULL,69723,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9765899703630',NULL,0,0,'auto_generate',0,0,0,2,1,0),(22,'Organic Cage-Free Grade A Large Brown Eggs','organic-cage-free-grade-a-large-brown-eggs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/22.jpg\",\"products\\/22-1.jpg\"]',NULL,'BL-155',0,14,0,1,'in_stock',1,3,0,0,10,2.40,0,1971,632,NULL,NULL,15,18,15,572,NULL,127198,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1225451893851',NULL,0,0,'auto_generate',0,0,0,1,1,0),(23,'Colorful Banana','colorful-banana','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/23.jpg\",\"products\\/23-1.jpg\"]',NULL,'YM-194',0,16,0,1,'in_stock',1,6,0,0,10,3.20,0,2424,2017,NULL,NULL,13,17,19,822,NULL,53738,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6172387238124',NULL,0,0,'auto_generate',0,0,0,1,3,0),(24,'Signature Wood-Fired Mushroom and Caramelized (Digital)','signature-wood-fired-mushroom-and-caramelized','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/24.jpg\",\"products\\/24-1.jpg\"]',NULL,'JU-122-A1',0,14,0,1,'in_stock',1,2,0,2,10,3.00,0,411,300.03,NULL,NULL,17,12,15,631,NULL,69114,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','6795413263183',NULL,0,0,'auto_generate',0,0,0,1,2,0),(25,'All Natural Italian-Style Chicken Meatballs',NULL,NULL,NULL,'published','[\"products\\/2-1.jpg\"]',NULL,'XO-164-A1',0,12,0,1,'in_stock',0,1,1,0,0,0.00,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4465965437142',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(26,'All Natural Italian-Style Chicken Meatballs',NULL,NULL,NULL,'published','[\"products\\/2.jpg\"]',NULL,'XO-164-A1-A2',0,12,0,1,'in_stock',0,1,1,0,0,0.00,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','0921440460899',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(27,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5-1.jpg\"]',NULL,'IT-178-A1',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8036807346821',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(28,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5.jpg\"]',NULL,'IT-178-A1-A2',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4631307657343',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(29,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5.jpg\"]',NULL,'IT-178-A1-A3',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8961188809040',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(30,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8-1.jpg\"]',NULL,'GV-136-A1',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,885.78,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','0255908348093',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(31,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8.jpg\"]',NULL,'GV-136-A1-A2',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,873.81,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','9315193475339',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(32,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8.jpg\"]',NULL,'GV-136-A1-A3',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,837.9,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','5494386363098',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(33,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10-1.jpg\"]',NULL,'1R-136-A1',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5341907134067',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(34,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A2',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9633135432418',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(35,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A3',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7686790094837',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(36,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A4',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9952675064812',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(37,'Nestle Original Coffee-Mate Coffee Creamer',NULL,NULL,NULL,'published','[\"products\\/11-1.jpg\"]',NULL,'1Z-163-A1',0,15,0,1,'in_stock',0,4,1,0,0,0.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5297445027197',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(38,'Nestle Original Coffee-Mate Coffee Creamer',NULL,NULL,NULL,'published','[\"products\\/11.jpg\"]',NULL,'1Z-163-A1-A2',0,15,0,1,'in_stock',0,4,1,0,0,0.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1746262855390',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(39,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12-1.jpg\"]',NULL,'NU-174-A1',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1705.55,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','7008208449655',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(40,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12.jpg\"]',NULL,'NU-174-A1-A2',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1993.5,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','8915222623710',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(41,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12.jpg\"]',NULL,'NU-174-A1-A3',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1927.05,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3980413348265',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(42,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13-1.jpg\"]',NULL,'MQ-102-A1',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7063704083871',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(43,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A2',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','2011425416626',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(44,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A3',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5685076010938',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(45,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A4',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8703013942733',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(46,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15-1.jpg\"]',NULL,'3P-135-A1',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','2824987011709',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(47,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15.jpg\"]',NULL,'3P-135-A1-A2',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6703613423740',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(48,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15.jpg\"]',NULL,'3P-135-A1-A3',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1350301713093',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(49,'Perdue Simply Smart Organics Gluten Free (Digital)',NULL,NULL,NULL,'published','[\"products\\/20-1.jpg\"]',NULL,'LN-140-A1',0,20,0,1,'in_stock',0,6,1,0,0,0.00,0,2309,1985.74,NULL,NULL,13,15,17,774,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3831072182793',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(50,'Perdue Simply Smart Organics Gluten Free (Digital)',NULL,NULL,NULL,'published','[\"products\\/20.jpg\"]',NULL,'LN-140-A1-A2',0,20,0,1,'in_stock',0,6,1,0,0,0.00,0,2309,1777.93,NULL,NULL,13,15,17,774,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2868592701778',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(51,'Signature Wood-Fired Mushroom and Caramelized (Digital)',NULL,NULL,NULL,'published','[\"products\\/24-1.jpg\"]',NULL,'JU-122-A1',0,14,0,1,'in_stock',0,2,1,0,0,0.00,0,411,300.03,NULL,NULL,17,12,15,631,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2976546063732',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(52,'Signature Wood-Fired Mushroom and Caramelized (Digital)',NULL,NULL,NULL,'published','[\"products\\/24.jpg\"]',NULL,'JU-122-A1-A2',0,14,0,1,'in_stock',0,2,1,0,0,0.00,0,411,369.9,NULL,NULL,17,12,15,631,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3885951650422',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0);
+INSERT INTO `ec_products` VALUES (1,'Seeds of Change Organic Quinoe','seeds-of-change-organic-quinoe','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/1.jpg\",\"products\\/1-1.jpg\"]',NULL,'0N-108',0,16,0,1,'in_stock',1,4,0,0,10,2.40,0,1151,653,NULL,NULL,17,13,10,848,NULL,130043,'2025-11-20 01:47:48','2025-11-20 01:48:07',0,'Botble\\ACL\\Models\\User',NULL,'physical','9719473541231',NULL,0,0,'auto_generate',0,0,0,1,2,0),(2,'All Natural Italian-Style Chicken Meatballs','all-natural-italian-style-chicken-meatballs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/2.jpg\",\"products\\/2-1.jpg\"]',NULL,'XO-164-A1',0,12,0,1,'in_stock',1,1,0,2,10,2.90,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,173153,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','0089926560928',NULL,0,0,'auto_generate',0,0,0,1,2,0),(3,'Angie’s Boomchickapop Sweet &amp; Salty Kettle Corn','angies-boomchickapop-sweet-salty-kettle-corn','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/3.jpg\",\"products\\/3-1.jpg\"]',NULL,'AV-143',0,14,0,1,'in_stock',1,6,0,0,10,3.50,0,1614,190,NULL,NULL,16,19,13,572,NULL,149485,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6915554775240',NULL,0,0,'auto_generate',0,0,0,1,1,0),(4,'Foster Farms Takeout Crispy Classic (Digital)','foster-farms-takeout-crispy-classic','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/4.jpg\",\"products\\/4-1.jpg\"]',NULL,'RS-183',0,17,0,1,'in_stock',1,7,0,0,10,4.10,0,1286,1246,NULL,NULL,18,14,12,672,NULL,78565,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3413835779404',NULL,0,0,'auto_generate',0,0,0,2,1,0),(5,'Blue Diamond Almonds Lightly','blue-diamond-almonds-lightly','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/5.jpg\",\"products\\/5-1.jpg\"]',NULL,'IT-178-A1',0,20,0,1,'in_stock',1,4,0,3,10,3.70,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,131106,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4948065674933',NULL,0,0,'auto_generate',0,0,0,1,1,0),(6,'Chobani Complete Vanilla Greek','chobani-complete-vanilla-greek','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/6.jpg\",\"products\\/6-1.jpg\"]',NULL,'RI-121',0,20,0,1,'in_stock',1,5,0,0,10,2.80,0,382,325,NULL,NULL,11,19,17,825,NULL,30553,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9388293038988',NULL,0,0,'auto_generate',0,0,0,2,1,0),(7,'Canada Dry Ginger Ale – 2 L Bottle','canada-dry-ginger-ale-2-l-bottle','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/7.jpg\",\"products\\/7-1.jpg\"]',NULL,'WB-184',0,14,0,1,'in_stock',1,1,0,0,10,3.60,0,305,118,NULL,NULL,17,19,16,707,NULL,117519,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4900543687699',NULL,0,0,'auto_generate',0,0,0,1,2,0),(8,'Encore Seafoods Stuffed Alaskan (Digital)','encore-seafoods-stuffed-alaskan','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/8.jpg\",\"products\\/8-1.jpg\"]',NULL,'GV-136-A1',0,15,0,1,'in_stock',1,1,0,3,10,2.70,0,1197,885.78,NULL,NULL,17,15,13,735,NULL,98534,'2025-11-20 01:47:48','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2631499051884',NULL,0,0,'auto_generate',0,0,0,1,1,0),(9,'Gorton’s Beer Battered Fish Fillets','gortons-beer-battered-fish-fillets','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/9.jpg\",\"products\\/9-1.jpg\"]',NULL,'3Z-155',0,18,0,1,'in_stock',1,3,0,0,10,3.10,0,1509,1406,NULL,NULL,14,12,20,841,NULL,158789,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4087871958872',NULL,0,0,'auto_generate',0,0,0,1,2,0),(10,'Haagen-Dazs Caramel Cone Ice Cream','haagen-dazs-caramel-cone-ice-cream','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/10.jpg\",\"products\\/10-1.jpg\"]',NULL,'1R-136-A1',0,19,0,1,'in_stock',1,2,0,4,10,3.80,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,166064,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6016280988123',NULL,0,0,'auto_generate',0,0,0,1,2,0),(11,'Nestle Original Coffee-Mate Coffee Creamer','nestle-original-coffee-mate-coffee-creamer','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/11.jpg\",\"products\\/11-1.jpg\"]',NULL,'1Z-163-A1',0,15,0,1,'in_stock',1,4,0,2,10,3.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,155536,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8210992610084',NULL,0,0,'auto_generate',0,0,0,1,4,0),(12,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)','naturally-flavored-cinnamon-vanilla-light-roast-coffee','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/12.jpg\",\"products\\/12-1.jpg\"]',NULL,'NU-174-A1',0,19,0,1,'in_stock',1,4,0,3,10,3.10,0,2215,1705.55,NULL,NULL,11,16,10,528,NULL,126046,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','0825851650941',NULL,0,0,'auto_generate',0,0,0,2,1,0),(13,'Pepperidge Farm Farmhouse Hearty White Bread','pepperidge-farm-farmhouse-hearty-white-bread','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/13.jpg\",\"products\\/13-1.jpg\"]',NULL,'MQ-102-A1',0,18,0,1,'in_stock',1,3,0,4,10,2.80,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,126585,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6633276015993',NULL,0,0,'auto_generate',0,0,0,1,2,0),(14,'Organic Frozen Triple Berry Blend','organic-frozen-triple-berry-blend','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/14.jpg\",\"products\\/14-1.jpg\"]',NULL,'LU-188',0,13,0,1,'in_stock',1,1,0,0,10,3.60,0,1092,980,NULL,NULL,12,18,20,845,NULL,182404,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7415881647139',NULL,0,0,'auto_generate',0,0,0,2,1,0),(15,'Oroweat Country Buttermilk Bread','oroweat-country-buttermilk-bread','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/15.jpg\",\"products\\/15-1.jpg\"]',NULL,'3P-135-A1',0,12,0,1,'in_stock',1,7,0,3,10,2.70,0,829,NULL,NULL,NULL,12,13,19,754,NULL,194907,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5963327344545',NULL,0,0,'auto_generate',0,0,0,1,3,0),(16,'Foster Farms Takeout Crispy Classic Buffalo Wings (Digital)','foster-farms-takeout-crispy-classic-buffalo-wings','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/16.jpg\",\"products\\/16-1.jpg\",\"products\\/16-2.jpg\",\"products\\/16-3.jpg\",\"products\\/16-4.jpg\",\"products\\/16-5.jpg\",\"products\\/16-6.jpg\"]',NULL,'BD-141',0,11,0,1,'in_stock',1,2,0,0,10,2.90,0,2050,1471,NULL,NULL,17,16,11,537,NULL,85747,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','6872882581175',NULL,0,0,'auto_generate',0,0,0,2,1,0),(17,'Angie’s Boomchickapop Sweet &amp; Salty Kettle Corn','angies-boomchickapop-sweet-salty-kettle-corn','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/17.jpg\",\"products\\/17-1.jpg\"]',NULL,'3G-152',0,17,0,1,'in_stock',1,3,0,0,10,2.40,0,255,149,NULL,NULL,18,19,11,839,NULL,30798,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','3554439923760',NULL,0,0,'auto_generate',0,0,0,2,1,0),(18,'All Natural Italian-Style Chicken Meatballs','all-natural-italian-style-chicken-meatballs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/18.jpg\",\"products\\/18-1.jpg\"]',NULL,'QK-155',0,16,0,1,'in_stock',1,5,0,0,10,2.30,0,506,229,NULL,NULL,11,11,12,869,NULL,162579,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','3746213827009',NULL,0,0,'auto_generate',0,0,0,1,4,0),(19,'Simply Lemonade with Raspberry Juice','simply-lemonade-with-raspberry-juice','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/19.jpg\",\"products\\/19-1.jpg\"]',NULL,'E7-160',0,14,0,1,'in_stock',1,4,0,0,10,2.60,0,386,61,NULL,NULL,16,19,20,693,NULL,10953,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6706467776024',NULL,0,0,'auto_generate',0,0,0,2,1,0),(20,'Perdue Simply Smart Organics Gluten Free (Digital)','perdue-simply-smart-organics-gluten-free','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/20.jpg\",\"products\\/20-1.jpg\"]',NULL,'LN-140-A1',0,20,0,1,'in_stock',1,6,0,2,10,3.30,0,2309,1985.74,NULL,NULL,13,15,17,774,NULL,92413,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','7733103503149',NULL,0,0,'auto_generate',0,0,0,1,2,0),(21,'Chen Watermelon','chen-watermelon','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/21.jpg\",\"products\\/21-1.jpg\"]',NULL,'XG-110',0,12,0,1,'in_stock',1,1,0,0,10,2.50,0,1054,421,NULL,NULL,18,18,13,525,NULL,69723,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9765899703630',NULL,0,0,'auto_generate',0,0,0,2,1,0),(22,'Organic Cage-Free Grade A Large Brown Eggs','organic-cage-free-grade-a-large-brown-eggs','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/22.jpg\",\"products\\/22-1.jpg\"]',NULL,'BL-155',0,14,0,1,'in_stock',1,3,0,0,10,2.40,0,1971,632,NULL,NULL,15,18,15,572,NULL,127198,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1225451893851',NULL,0,0,'auto_generate',0,0,0,1,1,0),(23,'Colorful Banana','colorful-banana','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/23.jpg\",\"products\\/23-1.jpg\"]',NULL,'YM-194',0,16,0,1,'in_stock',1,6,0,0,10,3.20,0,2424,2017,NULL,NULL,13,17,19,822,NULL,53738,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6172387238124',NULL,0,0,'auto_generate',0,0,0,1,3,0),(24,'Signature Wood-Fired Mushroom and Caramelized (Digital)','signature-wood-fired-mushroom-and-caramelized','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline.</p>\n<p><img src=\"/storage/general/clock.png\" alt=\"icon\" style=\"height:15px;\">  1 Year AL Jazeera Brand Warranty\n</p>\n<p><img src=\"/storage/general/paper-plane.png\" alt=\"icon\" style=\"height:15px;\">   30 Day Return Policy</p>\n<p><img src=\"/storage/general/credit-card.png\" alt=\"icon\" style=\"height:15px;\">  Cash on Delivery available\n</p>\n','<p>Short Hooded Coat features a straight body, large pockets with button flaps, ventilation air holes, and a string\n    detail along the hemline. The style is completed with a drawstring hood, featuring Rains’ signature built-in\n    cap. Made from waterproof, matte PU, this lightweight unisex rain jacket is an ode to nostalgia through its classic\n    silhouette and utilitarian design details.</p>\n<p>- Casual unisex fit</p>\n\n<p>- 64% polyester, 36% polyurethane</p>\n\n<p>- Water column pressure: 4000 mm</p>\n\n<p>- Model is 187cm tall and wearing a size S / M</p>\n\n<p>- Unisex fit</p>\n\n<p>- Drawstring hood with built-in cap</p>\n\n<p>- Front placket with snap buttons</p>\n\n<p>- Ventilation under armpit</p>\n\n<p>- Adjustable cuffs</p>\n\n<p>- Double welted front pockets</p>\n\n<p>- Adjustable elastic string at hempen</p>\n\n<p>- Ultrasonically welded seams</p>\n\n<p>This is a unisex item, please check our clothing &amp; footwear sizing guide for specific Rains jacket sizing\n    information. RAINS comes from the rainy nation of Denmark at the edge of the European continent, close to the ocean\n    and with prevailing westerly winds; all factors that contribute to an average of 121 rain days each year. Arising\n    from these rainy weather conditions comes the attitude that a quick rain shower may be beautiful, as well as moody-\n    but first and foremost requires the right outfit. Rains focus on the whole experience of going outside on rainy\n    days, issuing an invitation to explore even in the most mercurial weather.</p>\n','published','[\"products\\/24.jpg\",\"products\\/24-1.jpg\"]',NULL,'JU-122-A1',0,14,0,1,'in_stock',1,2,0,2,10,3.00,0,411,300.03,NULL,NULL,17,12,15,631,NULL,69114,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','6795413263183',NULL,0,0,'auto_generate',0,0,0,1,2,0),(25,'All Natural Italian-Style Chicken Meatballs',NULL,NULL,NULL,'published','[\"products\\/2-1.jpg\"]',NULL,'XO-164-A1',0,12,0,1,'in_stock',0,1,1,0,0,0.00,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4465965437142',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(26,'All Natural Italian-Style Chicken Meatballs',NULL,NULL,NULL,'published','[\"products\\/2.jpg\"]',NULL,'XO-164-A1-A2',0,12,0,1,'in_stock',0,1,1,0,0,0.00,0,1485,NULL,NULL,NULL,11,20,17,533,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','0921440460899',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(27,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5-1.jpg\"]',NULL,'IT-178-A1',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8036807346821',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(28,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5.jpg\"]',NULL,'IT-178-A1-A2',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','4631307657343',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(29,'Blue Diamond Almonds Lightly',NULL,NULL,NULL,'published','[\"products\\/5.jpg\"]',NULL,'IT-178-A1-A3',0,20,0,1,'in_stock',0,4,1,0,0,0.00,0,1017,NULL,NULL,NULL,12,19,18,512,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8961188809040',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(30,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8-1.jpg\"]',NULL,'GV-136-A1',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,885.78,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','0255908348093',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(31,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8.jpg\"]',NULL,'GV-136-A1-A2',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,873.81,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:49','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','9315193475339',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(32,'Encore Seafoods Stuffed Alaskan (Digital)',NULL,NULL,NULL,'published','[\"products\\/8.jpg\"]',NULL,'GV-136-A1-A3',0,15,0,1,'in_stock',0,1,1,0,0,0.00,0,1197,837.9,NULL,NULL,17,15,13,735,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','5494386363098',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(33,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10-1.jpg\"]',NULL,'1R-136-A1',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5341907134067',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(34,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A2',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9633135432418',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(35,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A3',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7686790094837',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(36,'Haagen-Dazs Caramel Cone Ice Cream',NULL,NULL,NULL,'published','[\"products\\/10.jpg\"]',NULL,'1R-136-A1-A4',0,19,0,1,'in_stock',0,2,1,0,0,0.00,0,1851,NULL,NULL,NULL,18,10,12,517,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','9952675064812',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(37,'Nestle Original Coffee-Mate Coffee Creamer',NULL,NULL,NULL,'published','[\"products\\/11-1.jpg\"]',NULL,'1Z-163-A1',0,15,0,1,'in_stock',0,4,1,0,0,0.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5297445027197',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(38,'Nestle Original Coffee-Mate Coffee Creamer',NULL,NULL,NULL,'published','[\"products\\/11.jpg\"]',NULL,'1Z-163-A1-A2',0,15,0,1,'in_stock',0,4,1,0,0,0.00,0,525,NULL,NULL,NULL,11,14,12,801,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1746262855390',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(39,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12-1.jpg\"]',NULL,'NU-174-A1',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1705.55,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','7008208449655',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(40,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12.jpg\"]',NULL,'NU-174-A1-A2',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1993.5,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','8915222623710',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(41,'Naturally Flavored Cinnamon Vanilla Light Roast Coffee (Digital)',NULL,NULL,NULL,'published','[\"products\\/12.jpg\"]',NULL,'NU-174-A1-A3',0,19,0,1,'in_stock',0,4,1,0,0,0.00,0,2215,1927.05,NULL,NULL,11,16,10,528,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3980413348265',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(42,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13-1.jpg\"]',NULL,'MQ-102-A1',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','7063704083871',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(43,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A2',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','2011425416626',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(44,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A3',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','5685076010938',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(45,'Pepperidge Farm Farmhouse Hearty White Bread',NULL,NULL,NULL,'published','[\"products\\/13.jpg\"]',NULL,'MQ-102-A1-A4',0,18,0,1,'in_stock',0,3,1,0,0,0.00,0,2331,NULL,NULL,NULL,16,20,20,554,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','8703013942733',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(46,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15-1.jpg\"]',NULL,'3P-135-A1',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','2824987011709',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(47,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15.jpg\"]',NULL,'3P-135-A1-A2',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','6703613423740',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(48,'Oroweat Country Buttermilk Bread',NULL,NULL,NULL,'published','[\"products\\/15.jpg\"]',NULL,'3P-135-A1-A3',0,12,0,1,'in_stock',0,7,1,0,0,0.00,0,829,NULL,NULL,NULL,12,13,19,754,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'physical','1350301713093',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(49,'Perdue Simply Smart Organics Gluten Free (Digital)',NULL,NULL,NULL,'published','[\"products\\/20-1.jpg\"]',NULL,'LN-140-A1',0,20,0,1,'in_stock',0,6,1,0,0,0.00,0,2309,1985.74,NULL,NULL,13,15,17,774,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3831072182793',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(50,'Perdue Simply Smart Organics Gluten Free (Digital)',NULL,NULL,NULL,'published','[\"products\\/20.jpg\"]',NULL,'LN-140-A1-A2',0,20,0,1,'in_stock',0,6,1,0,0,0.00,0,2309,1777.93,NULL,NULL,13,15,17,774,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2868592701778',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(51,'Signature Wood-Fired Mushroom and Caramelized (Digital)',NULL,NULL,NULL,'published','[\"products\\/24-1.jpg\"]',NULL,'JU-122-A1',0,14,0,1,'in_stock',0,2,1,0,0,0.00,0,411,300.03,NULL,NULL,17,12,15,631,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','2976546063732',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0),(52,'Signature Wood-Fired Mushroom and Caramelized (Digital)',NULL,NULL,NULL,'published','[\"products\\/24.jpg\"]',NULL,'JU-122-A1-A2',0,14,0,1,'in_stock',0,2,1,0,0,0.00,0,411,369.9,NULL,NULL,17,12,15,631,NULL,0,'2025-11-20 01:47:50','2025-11-20 01:48:08',0,'Botble\\ACL\\Models\\User',NULL,'digital','3885951650422',NULL,0,0,'auto_generate',0,0,0,NULL,NULL,0);
 /*!40000 ALTER TABLE `ec_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2820,12 +2823,12 @@ DROP TABLE IF EXISTS `ec_products_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_products_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_products_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `content` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`ec_products_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2850,7 +2853,7 @@ CREATE TABLE `ec_review_replies` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
   `review_id` bigint unsigned NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -2877,15 +2880,15 @@ DROP TABLE IF EXISTS `ec_reviews`;
 CREATE TABLE `ec_reviews` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` bigint unsigned DEFAULT NULL,
-  `customer_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_id` bigint unsigned NOT NULL,
   `star` double NOT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `images` text COLLATE utf8mb4_unicode_ci,
+  `images` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_reviews_product_id_customer_id_unique` (`product_id`,`customer_id`),
   KEY `ec_reviews_product_id_customer_id_status_created_at_index` (`product_id`,`customer_id`,`status`,`created_at`),
@@ -2914,8 +2917,8 @@ DROP TABLE IF EXISTS `ec_shared_wishlists`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_shared_wishlists` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_ids` text COLLATE utf8mb4_unicode_ci,
+  `code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_ids` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -2941,14 +2944,14 @@ DROP TABLE IF EXISTS `ec_shipment_histories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_shipment_histories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `action` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `shipment_id` bigint unsigned NOT NULL,
   `order_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
+  `user_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Botble\\ACL\\Models\\User',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2974,25 +2977,25 @@ CREATE TABLE `ec_shipments` (
   `order_id` bigint unsigned NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `weight` double DEFAULT '0',
-  `shipment_id` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rate_id` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci,
-  `status` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `shipment_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rate_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `cod_amount` decimal(15,2) DEFAULT '0.00',
-  `cod_status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-  `cross_checking_status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `cod_status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `cross_checking_status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `price` decimal(15,2) DEFAULT '0.00',
   `store_id` bigint unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `tracking_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_company_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tracking_link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tracking_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_company_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tracking_link` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `estimate_date_shipped` datetime DEFAULT NULL,
   `date_shipped` datetime DEFAULT NULL,
   `customer_delivered_confirmed_at` timestamp NULL DEFAULT NULL,
-  `label_url` text COLLATE utf8mb4_unicode_ci,
-  `metadata` mediumtext COLLATE utf8mb4_unicode_ci,
+  `label_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `metadata` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ec_shipments_order_id_unique` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -3016,8 +3019,8 @@ DROP TABLE IF EXISTS `ec_shipping`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_shipping` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -3044,10 +3047,10 @@ DROP TABLE IF EXISTS `ec_shipping_rule_items`;
 CREATE TABLE `ec_shipping_rule_items` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `shipping_rule_id` bigint unsigned NOT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `adjustment_price` decimal(15,2) DEFAULT '0.00',
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3074,9 +3077,9 @@ DROP TABLE IF EXISTS `ec_shipping_rules`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_shipping_rules` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_id` bigint unsigned NOT NULL,
-  `type` varchar(24) COLLATE utf8mb4_unicode_ci DEFAULT 'based_on_price',
+  `type` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'based_on_price',
   `from` decimal(15,2) DEFAULT '0.00',
   `to` decimal(15,2) DEFAULT '0.00',
   `price` decimal(15,2) DEFAULT '0.00',
@@ -3106,13 +3109,13 @@ DROP TABLE IF EXISTS `ec_specification_attributes`;
 CREATE TABLE `ec_specification_attributes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `group_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` text COLLATE utf8mb4_unicode_ci,
-  `default_value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `default_value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ec_specification_attributes_author_type_author_id_index` (`author_type`,`author_id`)
@@ -3137,11 +3140,11 @@ DROP TABLE IF EXISTS `ec_specification_attributes_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_specification_attributes_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_specification_attributes_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `options` text COLLATE utf8mb4_unicode_ci,
-  `default_value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `default_value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_specification_attributes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3164,11 +3167,11 @@ DROP TABLE IF EXISTS `ec_specification_groups`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_specification_groups` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ec_specification_groups_author_type_author_id_index` (`author_type`,`author_id`)
@@ -3193,10 +3196,10 @@ DROP TABLE IF EXISTS `ec_specification_groups_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_specification_groups_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_specification_groups_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_specification_groups_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3244,11 +3247,11 @@ DROP TABLE IF EXISTS `ec_specification_tables`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_specification_tables` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ec_specification_tables_author_type_author_id_index` (`author_type`,`author_id`)
@@ -3273,10 +3276,10 @@ DROP TABLE IF EXISTS `ec_specification_tables_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_specification_tables_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_specification_tables_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_specification_tables_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3299,18 +3302,18 @@ DROP TABLE IF EXISTS `ec_store_locators`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_store_locators` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_primary` tinyint(1) DEFAULT '0',
   `is_shipping_location` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3360,10 +3363,10 @@ DROP TABLE IF EXISTS `ec_tax_rules`;
 CREATE TABLE `ec_tax_rules` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `tax_id` bigint unsigned NOT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `priority` int DEFAULT NULL,
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3391,10 +3394,10 @@ DROP TABLE IF EXISTS `ec_taxes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_taxes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `percentage` float DEFAULT NULL,
   `priority` int DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -3419,9 +3422,9 @@ DROP TABLE IF EXISTS `ec_taxes_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ec_taxes_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ec_taxes_id` bigint unsigned NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`ec_taxes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3470,11 +3473,11 @@ DROP TABLE IF EXISTS `failed_jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -3499,12 +3502,12 @@ DROP TABLE IF EXISTS `faq_categories`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `faq_categories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `order` tinyint NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3527,9 +3530,9 @@ DROP TABLE IF EXISTS `faq_categories_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `faq_categories_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `faq_categories_id` bigint unsigned NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`faq_categories_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3552,10 +3555,10 @@ DROP TABLE IF EXISTS `faqs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `faqs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` bigint unsigned NOT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -3580,10 +3583,10 @@ DROP TABLE IF EXISTS `faqs_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `faqs_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `faqs_id` bigint unsigned NOT NULL,
-  `question` text COLLATE utf8mb4_unicode_ci,
-  `answer` text COLLATE utf8mb4_unicode_ci,
+  `question` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `answer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`faqs_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3606,8 +3609,8 @@ DROP TABLE IF EXISTS `jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `queue` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint unsigned NOT NULL,
   `reserved_at` int unsigned DEFAULT NULL,
   `available_at` int unsigned NOT NULL,
@@ -3635,10 +3638,10 @@ DROP TABLE IF EXISTS `language_meta`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `language_meta` (
   `lang_meta_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `lang_meta_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lang_meta_origin` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_meta_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lang_meta_origin` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reference_id` bigint unsigned NOT NULL,
-  `reference_type` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_type` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`lang_meta_id`),
   KEY `language_meta_reference_id_index` (`reference_id`),
   KEY `meta_code_index` (`lang_meta_code`),
@@ -3666,10 +3669,10 @@ DROP TABLE IF EXISTS `languages`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `languages` (
   `lang_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `lang_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang_locale` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang_flag` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lang_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_locale` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_flag` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lang_is_default` tinyint unsigned NOT NULL DEFAULT '0',
   `lang_order` int NOT NULL DEFAULT '0',
   `lang_is_rtl` tinyint unsigned NOT NULL DEFAULT '0',
@@ -3700,17 +3703,17 @@ DROP TABLE IF EXISTS `media_files`;
 CREATE TABLE `media_files` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alt` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alt` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `folder_id` bigint unsigned NOT NULL DEFAULT '0',
-  `mime_type` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mime_type` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` int NOT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` text COLLATE utf8mb4_unicode_ci,
+  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `visibility` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'public',
+  `visibility` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'public',
   PRIMARY KEY (`id`),
   KEY `media_files_user_id_index` (`user_id`),
   KEY `media_files_index` (`folder_id`,`user_id`,`created_at`)
@@ -3737,9 +3740,9 @@ DROP TABLE IF EXISTS `media_folders`;
 CREATE TABLE `media_folders` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` bigint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -3769,8 +3772,8 @@ DROP TABLE IF EXISTS `media_settings`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `media_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `key` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `media_id` bigint unsigned DEFAULT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -3798,7 +3801,7 @@ DROP TABLE IF EXISTS `menu_locations`;
 CREATE TABLE `menu_locations` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `menu_id` bigint unsigned NOT NULL,
-  `location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -3828,13 +3831,13 @@ CREATE TABLE `menu_nodes` (
   `menu_id` bigint unsigned NOT NULL,
   `parent_id` bigint unsigned NOT NULL DEFAULT '0',
   `reference_id` bigint unsigned DEFAULT NULL,
-  `reference_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon_font` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reference_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_font` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `position` tinyint unsigned NOT NULL DEFAULT '0',
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `css_class` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `target` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `css_class` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
   `has_child` tinyint unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -3865,9 +3868,9 @@ DROP TABLE IF EXISTS `menus`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menus` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -3894,10 +3897,10 @@ DROP TABLE IF EXISTS `meta_boxes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `meta_boxes` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `meta_key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_value` text COLLATE utf8mb4_unicode_ci,
+  `meta_key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `reference_id` bigint unsigned NOT NULL,
-  `reference_type` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference_type` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -3924,7 +3927,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -3980,12 +3983,12 @@ CREATE TABLE `mp_customer_revenues` (
   `fee` decimal(15,2) unsigned DEFAULT '0.00',
   `amount` decimal(15,2) DEFAULT '0.00',
   `current_balance` decimal(15,2) DEFAULT '0.00',
-  `currency` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `currency` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` bigint unsigned NOT NULL DEFAULT '0',
-  `type` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mp_customer_revenues_customer_id_index` (`customer_id`),
   KEY `mp_customer_revenues_order_id_index` (`order_id`)
@@ -4014,16 +4017,16 @@ CREATE TABLE `mp_customer_withdrawals` (
   `fee` decimal(15,2) unsigned DEFAULT '0.00',
   `amount` decimal(15,2) unsigned DEFAULT '0.00',
   `current_balance` decimal(15,2) unsigned DEFAULT '0.00',
-  `currency` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bank_info` text COLLATE utf8mb4_unicode_ci,
-  `payment_channel` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `bank_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payment_channel` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-  `images` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `images` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `transaction_id` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction_id` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mp_customer_withdrawals_customer_id_index` (`customer_id`),
   KEY `mp_customer_withdrawals_status_index` (`status`)
@@ -4050,9 +4053,9 @@ CREATE TABLE `mp_messages` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `store_id` bigint unsigned NOT NULL,
   `customer_id` bigint unsigned DEFAULT NULL,
-  `name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -4077,32 +4080,32 @@ DROP TABLE IF EXISTS `mp_stores`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mp_stores` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_id` bigint unsigned DEFAULT NULL,
-  `logo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo_square` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cover_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `logo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_square` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `is_verified` tinyint(1) NOT NULL DEFAULT '0',
   `verified_at` timestamp NULL DEFAULT NULL,
   `verified_by` bigint unsigned DEFAULT NULL,
-  `verification_note` text COLLATE utf8mb4_unicode_ci,
+  `verification_note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `vendor_verified_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tax_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `certificate_file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `government_id_file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificate_file` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `government_id_file` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mp_stores_customer_id_index` (`customer_id`),
   KEY `mp_stores_status_index` (`status`)
@@ -4127,14 +4130,14 @@ DROP TABLE IF EXISTS `mp_stores_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mp_stores_translations` (
-  `lang_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `mp_stores_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cover_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`mp_stores_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4161,12 +4164,12 @@ CREATE TABLE `mp_vendor_info` (
   `balance` decimal(15,2) NOT NULL DEFAULT '0.00',
   `total_fee` decimal(15,2) NOT NULL DEFAULT '0.00',
   `total_revenue` decimal(15,2) NOT NULL DEFAULT '0.00',
-  `signature` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank_info` text COLLATE utf8mb4_unicode_ci,
+  `signature` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `payout_payment_method` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT 'bank_transfer',
-  `tax_info` text COLLATE utf8mb4_unicode_ci,
+  `payout_payment_method` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'bank_transfer',
+  `tax_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mp_vendor_info_customer_id_index` (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -4191,9 +4194,9 @@ DROP TABLE IF EXISTS `newsletters`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `newsletters` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'subscribed',
+  `email` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'subscribed',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -4218,13 +4221,13 @@ DROP TABLE IF EXISTS `pages`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pages` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `user_id` bigint unsigned DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `template` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `template` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4250,11 +4253,11 @@ DROP TABLE IF EXISTS `pages_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pages_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `pages_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`pages_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4276,8 +4279,8 @@ DROP TABLE IF EXISTS `password_reset_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -4301,10 +4304,10 @@ DROP TABLE IF EXISTS `payment_logs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_logs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `payment_method` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `request` longtext COLLATE utf8mb4_unicode_ci,
-  `response` longtext COLLATE utf8mb4_unicode_ci,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_method` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `request` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -4329,23 +4332,23 @@ DROP TABLE IF EXISTS `payments`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `currency` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint unsigned NOT NULL DEFAULT '0',
-  `charge_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_channel` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charge_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_channel` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` decimal(15,2) unsigned NOT NULL,
   `payment_fee` decimal(15,2) DEFAULT '0.00',
   `order_id` bigint unsigned DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
-  `payment_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'confirm',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `payment_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'confirm',
   `customer_id` bigint unsigned DEFAULT NULL,
   `refunded_amount` decimal(15,2) unsigned DEFAULT NULL,
-  `refund_note` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refund_note` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `customer_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `metadata` mediumtext COLLATE utf8mb4_unicode_ci,
+  `customer_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `metadata` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4368,11 +4371,11 @@ DROP TABLE IF EXISTS `personal_access_tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -4451,16 +4454,16 @@ DROP TABLE IF EXISTS `posts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `author_id` bigint unsigned DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_featured` tinyint unsigned NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `views` int unsigned NOT NULL DEFAULT '0',
-  `format_type` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `format_type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4489,11 +4492,11 @@ DROP TABLE IF EXISTS `posts_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `posts_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`lang_code`,`posts_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4517,17 +4520,17 @@ DROP TABLE IF EXISTS `push_notification_recipients`;
 CREATE TABLE `push_notification_recipients` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `push_notification_id` bigint unsigned NOT NULL,
-  `user_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
-  `device_token` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `platform` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sent',
+  `device_token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `platform` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sent',
   `sent_at` timestamp NULL DEFAULT NULL,
   `delivered_at` timestamp NULL DEFAULT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `clicked_at` timestamp NULL DEFAULT NULL,
   `fcm_response` json DEFAULT NULL,
-  `error_message` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `error_message` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4556,15 +4559,15 @@ DROP TABLE IF EXISTS `push_notifications`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `push_notifications` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'general',
-  `target_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `target_value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'general',
+  `target_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data` json DEFAULT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sent',
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sent',
   `sent_count` int NOT NULL DEFAULT '0',
   `failed_count` int NOT NULL DEFAULT '0',
   `delivered_count` int NOT NULL DEFAULT '0',
@@ -4599,12 +4602,12 @@ DROP TABLE IF EXISTS `revisions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `revisions` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `revisionable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revisionable_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `revisionable_id` bigint unsigned NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `key` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `old_value` text COLLATE utf8mb4_unicode_ci,
-  `new_value` text COLLATE utf8mb4_unicode_ci,
+  `key` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `old_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `new_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4657,10 +4660,10 @@ DROP TABLE IF EXISTS `roles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `permissions` text COLLATE utf8mb4_unicode_ci,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `permissions` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
   `created_by` bigint unsigned NOT NULL,
   `updated_by` bigint unsigned NOT NULL,
@@ -4691,11 +4694,11 @@ DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sessions` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -4721,13 +4724,13 @@ DROP TABLE IF EXISTS `settings`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4736,7 +4739,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,'media_random_hash','4164d485067613d5ea297759816b05c4',NULL,'2025-11-20 01:48:05'),(2,'api_enabled','0',NULL,'2025-11-20 01:48:05'),(3,'activated_plugins','[\"language\",\"language-advanced\",\"ads\",\"analytics\",\"audit-log\",\"backup\",\"blog\",\"bottom-bar-menu\",\"captcha\",\"contact\",\"cookie-consent\",\"ecommerce\",\"faq\",\"location\",\"marketplace\",\"mollie\",\"newsletter\",\"payment\",\"paypal\",\"paypal-payout\",\"paystack\",\"razorpay\",\"shippo\",\"simple-slider\",\"social-login\",\"sslcommerz\",\"stripe\",\"stripe-connect\",\"testimonial\",\"translation\"]',NULL,'2025-11-20 01:48:05'),(4,'analytics_dashboard_widgets','0','2025-11-20 01:47:32','2025-11-20 01:47:32'),(5,'enable_recaptcha_botble_contact_forms_fronts_contact_form','1','2025-11-20 01:47:33','2025-11-20 01:47:33'),(6,'api_layer_api_key','',NULL,'2025-11-20 01:48:05'),(9,'enable_recaptcha_botble_newsletter_forms_fronts_newsletter_form','1','2025-11-20 01:47:38','2025-11-20 01:47:38'),(10,'payment_cod_fee_type','fixed',NULL,'2025-11-20 01:48:05'),(11,'payment_bank_transfer_fee_type','fixed',NULL,'2025-11-20 01:48:05'),(12,'theme','nest',NULL,'2025-11-20 01:48:05'),(13,'show_admin_bar','1',NULL,'2025-11-20 01:48:05'),(14,'language_hide_default','1',NULL,'2025-11-20 01:48:05'),(15,'language_switcher_display','dropdown',NULL,'2025-11-20 01:48:05'),(16,'language_display','all',NULL,'2025-11-20 01:48:05'),(17,'language_hide_languages','[]',NULL,'2025-11-20 01:48:05'),(18,'ecommerce_store_name','Nest',NULL,NULL),(19,'ecommerce_store_phone','18006268',NULL,NULL),(20,'ecommerce_store_address','North Link Building, 10 Admiralty Street',NULL,NULL),(21,'ecommerce_store_state','Singapore',NULL,NULL),(22,'ecommerce_store_city','Singapore',NULL,NULL),(23,'ecommerce_store_country','SG',NULL,NULL),(24,'admin_favicon','general/favicon.png',NULL,'2025-11-20 01:48:05'),(25,'admin_logo','general/logo.png',NULL,'2025-11-20 01:48:05'),(26,'payment_cod_status','1',NULL,'2025-11-20 01:48:05'),(27,'payment_bank_transfer_status','1',NULL,'2025-11-20 01:48:05'),(28,'payment_cod_description','Please pay money directly to the postman, if you choose cash on delivery method (COD).',NULL,'2025-11-20 01:48:05'),(29,'payment_bank_transfer_description','Please send money to our bank account: ACB - 69270 213 19.',NULL,'2025-11-20 01:48:05'),(30,'payment_stripe_payment_type','stripe_checkout',NULL,'2025-11-20 01:48:05'),(31,'plugins_ecommerce_customer_new_order_status','0',NULL,'2025-11-20 01:48:05'),(32,'plugins_ecommerce_admin_new_order_status','0',NULL,'2025-11-20 01:48:05'),(33,'ecommerce_is_enabled_support_digital_products','1',NULL,'2025-11-20 01:48:05'),(34,'ecommerce_enable_license_codes_for_digital_products','1',NULL,'2025-11-20 01:48:05'),(35,'ecommerce_auto_complete_digital_orders_after_payment','1',NULL,'2025-11-20 01:48:05'),(36,'ecommerce_load_countries_states_cities_from_location_plugin','0',NULL,'2025-11-20 01:48:05'),(37,'ecommerce_product_sku_format','SF-2443-%s%s%s%s',NULL,'2025-11-20 01:48:05'),(38,'ecommerce_store_order_prefix','SF',NULL,'2025-11-20 01:48:05'),(39,'ecommerce_enable_product_specification','1',NULL,'2025-11-20 01:48:05'),(40,'payment_bank_transfer_display_bank_info_at_the_checkout_success_page','1',NULL,'2025-11-20 01:48:05'),(41,'payment_cod_logo','payments/cod.png',NULL,'2025-11-20 01:48:05'),(42,'payment_bank_transfer_logo','payments/bank-transfer.png',NULL,'2025-11-20 01:48:05'),(43,'payment_stripe_logo','payments/stripe.webp',NULL,'2025-11-20 01:48:05'),(44,'payment_paypal_logo','payments/paypal.png',NULL,'2025-11-20 01:48:05'),(45,'payment_mollie_logo','payments/mollie.png',NULL,'2025-11-20 01:48:05'),(46,'payment_paystack_logo','payments/paystack.png',NULL,'2025-11-20 01:48:05'),(47,'payment_razorpay_logo','payments/razorpay.png',NULL,'2025-11-20 01:48:05'),(48,'payment_sslcommerz_logo','payments/sslcommerz.png',NULL,'2025-11-20 01:48:05'),(49,'permalink-botble-blog-models-post','blog',NULL,'2025-11-20 01:48:05'),(50,'permalink-botble-blog-models-category','blog',NULL,'2025-11-20 01:48:05'),(51,'theme-nest-site_title','Nest - Laravel Multipurpose eCommerce Script',NULL,NULL),(52,'theme-nest-seo_description','Nest is an attractive Laravel multi-vendor eCommerce script specially designed for the multipurpose shops like mega store, grocery store, supermarket, organic shop, and online stores selling products like beverages, vegetables, fruits, ice creams, paste, herbs, juice, meat, cold drinks, sausages, cocktails, soft drinks, cookies…',NULL,NULL),(53,'theme-nest-copyright','Copyright © %Y Nest all rights reserved. Powered by Botble.',NULL,NULL),(54,'theme-nest-favicon','general/favicon.png',NULL,NULL),(55,'theme-nest-logo','general/logo.png',NULL,NULL),(56,'theme-nest-seo_og_image','general/open-graph-image.png',NULL,NULL),(57,'theme-nest-address','562 Wellington Road, Street 32, San Francisco',NULL,NULL),(58,'theme-nest-hotline','1900 - 888',NULL,NULL),(59,'theme-nest-hotline_subtitle_text','24/7 Support Center',NULL,NULL),(60,'theme-nest-phone','+01 2222 365 /(+91) 01 2345 6789',NULL,NULL),(61,'theme-nest-working_hours','10:00 - 18:00, Mon - Sat',NULL,NULL),(62,'theme-nest-homepage_id','1',NULL,NULL),(63,'theme-nest-blog_page_id','5',NULL,NULL),(64,'theme-nest-cookie_consent_message','Your experience on this site will be improved by allowing cookies ',NULL,NULL),(65,'theme-nest-cookie_consent_learn_more_url','/cookie-policy',NULL,NULL),(66,'theme-nest-cookie_consent_learn_more_text','Cookie Policy',NULL,NULL),(67,'theme-nest-payment_methods','general/payment-methods.png',NULL,NULL),(68,'theme-nest-number_of_cross_sale_product','4',NULL,NULL),(69,'theme-nest-mobile-header-message','<span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>',NULL,NULL),(70,'theme-nest-blog_page_background','general/header-bg.png',NULL,NULL),(71,'theme-nest-blog_page_icon','general/category-1.png',NULL,NULL),(72,'theme-nest-login_background','general/login-1.png',NULL,NULL),(73,'theme-nest-number_of_products_per_page','12',NULL,NULL),(74,'theme-nest-preloader_enabled','no',NULL,NULL),(75,'theme-nest-preloader_version','v2',NULL,NULL),(76,'theme-nest-preloader_image','general/loading.gif',NULL,NULL),(77,'theme-nest-sticky_header_content_position','middle',NULL,NULL),(78,'theme-nest-social_links','[[{\"key\":\"social-name\",\"value\":\"Facebook\"},{\"key\":\"social-icon\",\"value\":\"general\\/facebook.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.facebook.com\"}],[{\"key\":\"social-name\",\"value\":\"Twitter\"},{\"key\":\"social-icon\",\"value\":\"general\\/twitter.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.twitter.com\"}],[{\"key\":\"social-name\",\"value\":\"Instagram\"},{\"key\":\"social-icon\",\"value\":\"general\\/instagram.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.instagram.com\"}],[{\"key\":\"social-name\",\"value\":\"Pinterest\"},{\"key\":\"social-icon\",\"value\":\"general\\/pinterest.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.pinterest.com\"}],[{\"key\":\"social-name\",\"value\":\"Youtube\"},{\"key\":\"social-icon\",\"value\":\"general\\/youtube.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.youtube.com\"}]]',NULL,NULL),(79,'theme-nest-header_messages','[[{\"key\":\"icon\",\"value\":\"fi-rs-bell\"},{\"key\":\"message\",\"value\":\"<b class=\\\"text-success\\\"> Trendy 25<\\/b> silver jewelry, save up 35% off today\"},{\"key\":\"link\",\"value\":\"\\/products\"},{\"key\":\"link_text\",\"value\":\"Shop now\"}],[{\"key\":\"icon\",\"value\":\"fi-rs-asterisk\"},{\"key\":\"message\",\"value\":\"<b class=\\\"text-danger\\\">Super Value Deals<\\/b> - Save more with coupons\"},{\"key\":\"link\",\"value\":\"\\/products\"},{\"key\":\"link_text\",\"value\":null}],[{\"key\":\"icon\",\"value\":\"fi-rs-angle-double-right\"},{\"key\":\"message\",\"value\":\"Get great devices up to 50% off\"},{\"key\":\"link\",\"value\":\"\\/products\"},{\"key\":\"link_text\",\"value\":\"View details\"}]]',NULL,NULL),(80,'theme-nest-contact_info_boxes','[[{\"key\":\"name\",\"value\":\"Head Office\"},{\"key\":\"address\",\"value\":\"205 North Michigan Avenue, Suite 810, Chicago, 60601, USA\"},{\"key\":\"phone\",\"value\":\"(+01) 234 567\"},{\"key\":\"email\",\"value\":\"office@botble.com\"}],[{\"key\":\"name\",\"value\":\"Our Studio\"},{\"key\":\"address\",\"value\":\"205 North Michigan Avenue, Suite 810, Chicago, 60601, USA\"},{\"key\":\"phone\",\"value\":\"(+01) 234 567\"},{\"key\":\"email\",\"value\":\"studio@botble.com\"}],[{\"key\":\"name\",\"value\":\"Our Shop\"},{\"key\":\"address\",\"value\":\"205 North Michigan Avenue, Suite 810, Chicago, 60601, USA\"},{\"key\":\"phone\",\"value\":\"(+01) 234 567\"},{\"key\":\"email\",\"value\":\"shop@botble.com\"}]]',NULL,NULL),(81,'theme-nest-number_of_products_per_row','5',NULL,NULL);
+INSERT INTO `settings` VALUES (1,'media_random_hash','4164d485067613d5ea297759816b05c4',NULL,'2026-10-20 07:31:02'),(2,'api_enabled','1',NULL,'2026-10-20 07:31:02'),(3,'activated_plugins','[\"language\",\"language-advanced\",\"ads\",\"analytics\",\"audit-log\",\"backup\",\"blog\",\"bottom-bar-menu\",\"captcha\",\"contact\",\"cookie-consent\",\"ecommerce\",\"faq\",\"location\",\"marketplace\",\"mollie\",\"newsletter\",\"payment\",\"paypal\",\"paypal-payout\",\"paystack\",\"razorpay\",\"shippo\",\"simple-slider\",\"social-login\",\"sslcommerz\",\"stripe\",\"stripe-connect\",\"testimonial\",\"translation\"]',NULL,'2026-10-20 07:31:02'),(4,'analytics_dashboard_widgets','0','2025-11-20 01:47:32','2026-10-20 07:31:02'),(5,'enable_recaptcha_botble_contact_forms_fronts_contact_form','1','2025-11-20 01:47:33','2026-10-20 07:31:02'),(6,'api_layer_api_key','',NULL,'2026-10-20 07:31:02'),(9,'enable_recaptcha_botble_newsletter_forms_fronts_newsletter_form','1','2025-11-20 01:47:38','2026-10-20 07:31:02'),(10,'payment_cod_fee_type','fixed',NULL,'2026-10-20 07:31:02'),(11,'payment_bank_transfer_fee_type','fixed',NULL,'2026-10-20 07:31:02'),(12,'theme','nest',NULL,'2026-10-20 07:31:02'),(13,'show_admin_bar','1',NULL,'2026-10-20 07:31:02'),(14,'language_hide_default','1',NULL,'2026-10-20 07:31:02'),(15,'language_switcher_display','dropdown',NULL,'2026-10-20 07:31:02'),(16,'language_display','all',NULL,'2026-10-20 07:31:02'),(17,'language_hide_languages','[]',NULL,'2026-10-20 07:31:02'),(18,'ecommerce_store_name','Kharif',NULL,'2026-10-20 07:31:02'),(19,'ecommerce_store_phone','+91 90000 00000',NULL,'2026-10-20 07:31:02'),(20,'ecommerce_store_address','India',NULL,'2026-10-20 07:31:02'),(21,'ecommerce_store_state','',NULL,'2026-10-20 07:31:02'),(22,'ecommerce_store_city','India',NULL,'2026-10-20 07:31:02'),(23,'ecommerce_store_country','IN',NULL,'2026-10-20 07:31:02'),(24,'admin_favicon','general/kharif-favicon.png',NULL,'2026-10-20 07:31:02'),(25,'admin_logo','general/kharif-logo-light.png',NULL,'2026-10-20 07:31:02'),(26,'payment_cod_status','1',NULL,'2026-10-20 07:31:02'),(27,'payment_bank_transfer_status','1',NULL,'2026-10-20 07:31:02'),(28,'payment_cod_description','Please pay money directly to the postman, if you choose cash on delivery method (COD).',NULL,'2026-10-20 07:31:02'),(29,'payment_bank_transfer_description','Please send money to our bank account: ACB - 69270 213 19.',NULL,'2026-10-20 07:31:02'),(30,'payment_stripe_payment_type','stripe_checkout',NULL,'2026-10-20 07:31:02'),(31,'plugins_ecommerce_customer_new_order_status','0',NULL,'2026-10-20 07:31:02'),(32,'plugins_ecommerce_admin_new_order_status','0',NULL,'2026-10-20 07:31:02'),(33,'ecommerce_is_enabled_support_digital_products','1',NULL,'2026-10-20 07:31:02'),(34,'ecommerce_enable_license_codes_for_digital_products','1',NULL,'2026-10-20 07:31:02'),(35,'ecommerce_auto_complete_digital_orders_after_payment','1',NULL,'2026-10-20 07:31:02'),(36,'ecommerce_load_countries_states_cities_from_location_plugin','0',NULL,'2026-10-20 07:31:02'),(37,'ecommerce_product_sku_format','SF-2443-%s%s%s%s',NULL,'2026-10-20 07:31:02'),(38,'ecommerce_store_order_prefix','SF',NULL,'2026-10-20 07:31:02'),(39,'ecommerce_enable_product_specification','1',NULL,'2026-10-20 07:31:02'),(40,'payment_bank_transfer_display_bank_info_at_the_checkout_success_page','1',NULL,'2026-10-20 07:31:02'),(41,'payment_cod_logo','payments/cod.png',NULL,'2026-10-20 07:31:02'),(42,'payment_bank_transfer_logo','payments/bank-transfer.png',NULL,'2026-10-20 07:31:02'),(43,'payment_stripe_logo','payments/stripe.webp',NULL,'2026-10-20 07:31:02'),(44,'payment_paypal_logo','payments/paypal.png',NULL,'2026-10-20 07:31:02'),(45,'payment_mollie_logo','payments/mollie.png',NULL,'2026-10-20 07:31:02'),(46,'payment_paystack_logo','payments/paystack.png',NULL,'2026-10-20 07:31:02'),(47,'payment_razorpay_logo','payments/razorpay.png',NULL,'2026-10-20 07:31:02'),(48,'payment_sslcommerz_logo','payments/sslcommerz.png',NULL,'2026-10-20 07:31:02'),(49,'permalink-botble-blog-models-post','blog',NULL,'2026-10-20 07:31:02'),(50,'permalink-botble-blog-models-category','blog',NULL,'2026-10-20 07:31:02'),(51,'theme-nest-site_title','Kharif | Natural Wood-Pressed Cooking Oils',NULL,'2026-10-20 07:31:02'),(52,'theme-nest-seo_description','Shop Kharif wood-pressed cooking oils made using traditional methods. Discover natural, carefully crafted oils for everyday cooking.',NULL,'2026-10-20 07:31:02'),(53,'theme-nest-copyright','Copyright © %Y Kharif. All rights reserved.',NULL,'2026-10-20 07:31:02'),(54,'theme-nest-favicon','general/kharif-favicon.png',NULL,'2026-10-20 07:31:02'),(55,'theme-nest-logo','general/kharif-logo.png',NULL,'2026-10-20 07:31:02'),(56,'theme-nest-seo_og_image','general/kharif-logo.png',NULL,'2026-10-20 07:31:02'),(57,'theme-nest-address','India',NULL,'2026-10-20 07:31:02'),(58,'theme-nest-hotline','+91 90000 00000',NULL,'2026-10-20 07:31:02'),(59,'theme-nest-hotline_subtitle_text','Pressed to order in small batches',NULL,'2026-10-20 07:31:02'),(60,'theme-nest-phone','+91 90000 00000',NULL,'2026-10-20 07:31:02'),(61,'theme-nest-working_hours','Mon – Sat: 9 am – 6 pm',NULL,'2026-10-20 07:31:02'),(62,'theme-nest-homepage_id','1',NULL,'2026-10-20 07:31:02'),(63,'theme-nest-blog_page_id','5',NULL,'2026-10-20 07:31:02'),(64,'theme-nest-cookie_consent_message','Your experience on this site will be improved by allowing cookies ',NULL,'2026-10-20 07:31:02'),(65,'theme-nest-cookie_consent_learn_more_url','/cookie-policy',NULL,'2026-10-20 07:31:02'),(66,'theme-nest-cookie_consent_learn_more_text','Cookie Policy',NULL,'2026-10-20 07:31:02'),(67,'theme-nest-payment_methods','general/payment-methods.png',NULL,'2026-10-20 07:31:02'),(68,'theme-nest-number_of_cross_sale_product','4',NULL,'2026-10-20 07:31:02'),(69,'theme-nest-mobile-header-message','<span>Free delivery on prepaid orders above <strong>₹999</strong> · Pressed to order in small batches</span>',NULL,'2026-10-20 07:31:02'),(70,'theme-nest-blog_page_background','general/header-bg.png',NULL,'2026-10-20 07:31:02'),(71,'theme-nest-blog_page_icon','general/category-1.png',NULL,'2026-10-20 07:31:02'),(72,'theme-nest-login_background','general/login-1.png',NULL,'2026-10-20 07:31:02'),(73,'theme-nest-number_of_products_per_page','12',NULL,'2026-10-20 07:31:02'),(74,'theme-nest-preloader_enabled','no',NULL,'2026-10-20 07:31:02'),(75,'theme-nest-preloader_version','v2',NULL,'2026-10-20 07:31:02'),(76,'theme-nest-preloader_image','general/loading.gif',NULL,'2026-10-20 07:31:02'),(77,'theme-nest-sticky_header_content_position','middle',NULL,'2026-10-20 07:31:02'),(78,'theme-nest-social_links','[[{\"key\":\"social-name\",\"value\":\"Facebook\"},{\"key\":\"social-icon\",\"value\":\"general\\/facebook.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.facebook.com\"}],[{\"key\":\"social-name\",\"value\":\"Twitter\"},{\"key\":\"social-icon\",\"value\":\"general\\/twitter.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.twitter.com\"}],[{\"key\":\"social-name\",\"value\":\"Instagram\"},{\"key\":\"social-icon\",\"value\":\"general\\/instagram.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.instagram.com\"}],[{\"key\":\"social-name\",\"value\":\"Pinterest\"},{\"key\":\"social-icon\",\"value\":\"general\\/pinterest.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.pinterest.com\"}],[{\"key\":\"social-name\",\"value\":\"Youtube\"},{\"key\":\"social-icon\",\"value\":\"general\\/youtube.png\"},{\"key\":\"social-url\",\"value\":\"https:\\/\\/www.youtube.com\"}]]',NULL,'2026-10-20 07:31:02'),(79,'theme-nest-header_messages','[[{\"key\":\"icon\",\"value\":\"fi-rs-bell\"},{\"key\":\"message\",\"value\":\"Free delivery on prepaid orders above <b class=\\\"text-success\\\">\\u20b9999<\\/b>\"},{\"key\":\"link\",\"value\":\"\\/products\"},{\"key\":\"link_text\",\"value\":\"Shop now\"}],[{\"key\":\"icon\",\"value\":\"fi-rs-shopping-bag\"},{\"key\":\"message\",\"value\":\"Traditionally <b>wood-pressed<\\/b> cooking oils\"},{\"key\":\"link\",\"value\":\"\\/products\"},{\"key\":\"link_text\",\"value\":\"Explore\"}],[{\"key\":\"icon\",\"value\":\"fi-rs-heart\"},{\"key\":\"message\",\"value\":\"Natural Food Products by <b>Kharif<\\/b>\"},{\"key\":\"link\",\"value\":\"\\/\"},{\"key\":\"link_text\",\"value\":\"Learn more\"}]]',NULL,'2026-10-20 07:31:02'),(80,'theme-nest-contact_info_boxes','[[{\"key\":\"name\",\"value\":\"Head Office\"},{\"key\":\"address\",\"value\":\"India\"},{\"key\":\"phone\",\"value\":\"+91 90000 00000\"},{\"key\":\"email\",\"value\":\"hello@kharif.in\"}],[{\"key\":\"name\",\"value\":\"Customer Care\"},{\"key\":\"address\",\"value\":\"hello@kharif.in\"},{\"key\":\"phone\",\"value\":\"+91 90000 00000\"},{\"key\":\"email\",\"value\":\"hello@kharif.in\"}]]',NULL,'2026-10-20 07:31:02'),(81,'theme-nest-number_of_products_per_row','5',NULL,'2026-10-20 07:31:02'),(82,'licensed_to','Local Developer',NULL,'2026-10-20 07:31:02'),(83,'shortcode_cache_enabled','1',NULL,'2026-10-20 07:31:02'),(84,'widget_cache_enabled','1',NULL,'2026-10-20 07:31:02'),(85,'cache_frontend_enabled','0',NULL,'2026-10-20 07:31:02'),(86,'theme-nest-admin_logo','general/kharif-logo-light.png',NULL,'2026-10-20 07:31:02'),(87,'theme-nest-admin_favicon','general/kharif-favicon.png',NULL,'2026-10-20 07:31:02'),(88,'theme-nest-email','hello@kharif.in',NULL,'2026-10-20 07:31:02'),(89,'theme-nest-color_brand','#17402C',NULL,'2026-10-20 07:31:02'),(90,'theme-nest-color_brand_dark','#215044',NULL,'2026-10-20 07:31:02'),(91,'theme-nest-color_brand_2','#C08A2E',NULL,'2026-10-20 07:31:02'),(92,'theme-nest-font_heading','DM Sans',NULL,'2026-10-20 07:31:02'),(93,'theme-nest-font_text','Inter',NULL,'2026-10-20 07:31:02'),(94,'email_from_name','Kharif',NULL,'2026-10-20 07:31:02'),(95,'email_from_address','hello@kharif.in',NULL,'2026-10-20 07:31:02'),(96,'api_key','',NULL,'2026-10-20 07:31:02'),(97,'push_notifications_enabled','0',NULL,'2026-10-20 07:31:02'),(98,'fcm_project_id','',NULL,'2026-10-20 07:31:02'),(99,'fcm_service_account_path','',NULL,'2026-10-20 07:31:02'),(100,'admin_title','Ecom',NULL,'2026-10-20 07:31:02');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4750,10 +4753,10 @@ DROP TABLE IF EXISTS `simple_slider_items`;
 CREATE TABLE `simple_slider_items` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `simple_slider_id` bigint unsigned NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `order` int unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -4780,10 +4783,10 @@ DROP TABLE IF EXISTS `simple_sliders`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `simple_sliders` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `key` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -4809,10 +4812,10 @@ DROP TABLE IF EXISTS `slugs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `slugs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `reference_id` bigint unsigned NOT NULL,
-  `reference_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prefix` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `reference_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prefix` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4842,10 +4845,10 @@ DROP TABLE IF EXISTS `slugs_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `slugs_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slugs_id` bigint unsigned NOT NULL,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `prefix` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prefix` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
   PRIMARY KEY (`lang_code`,`slugs_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4868,12 +4871,12 @@ DROP TABLE IF EXISTS `social_logins`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `social_logins` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
-  `provider` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provider_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` text COLLATE utf8mb4_unicode_ci,
-  `refresh_token` text COLLATE utf8mb4_unicode_ci,
+  `provider` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provider_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `refresh_token` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `token_expires_at` timestamp NULL DEFAULT NULL,
   `provider_data` json DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -4903,14 +4906,14 @@ DROP TABLE IF EXISTS `states`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `states` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `abbreviation` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abbreviation` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `country_id` bigint unsigned DEFAULT NULL,
   `order` tinyint NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_default` tinyint unsigned NOT NULL DEFAULT '0',
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -4938,11 +4941,11 @@ DROP TABLE IF EXISTS `states_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `states_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `states_id` bigint unsigned NOT NULL,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `abbreviation` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abbreviation` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`states_id`),
   KEY `idx_states_trans_state_lang` (`states_id`,`lang_code`),
   KEY `idx_states_trans_name` (`name`),
@@ -4968,11 +4971,11 @@ DROP TABLE IF EXISTS `tags`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tags` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_id` bigint unsigned DEFAULT NULL,
-  `author_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `author_type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -4997,10 +5000,10 @@ DROP TABLE IF EXISTS `tags_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tags_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tags_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(400) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`tags_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5023,11 +5026,11 @@ DROP TABLE IF EXISTS `testimonials`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `testimonials` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
+  `name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'published',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -5052,11 +5055,11 @@ DROP TABLE IF EXISTS `testimonials_translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `testimonials_translations` (
-  `lang_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `testimonials_id` bigint unsigned NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci,
-  `company` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `company` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`lang_code`,`testimonials_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5079,8 +5082,8 @@ DROP TABLE IF EXISTS `user_meta`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_meta` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `key` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `user_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -5107,9 +5110,9 @@ DROP TABLE IF EXISTS `user_settings`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
-  `key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` json NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -5138,20 +5141,20 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `first_name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `username` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar_id` bigint unsigned DEFAULT NULL,
   `super_user` tinyint(1) NOT NULL DEFAULT '0',
   `manage_supers` tinyint(1) NOT NULL DEFAULT '0',
-  `permissions` text COLLATE utf8mb4_unicode_ci,
+  `permissions` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_login` timestamp NULL DEFAULT NULL,
   `sessions_invalidated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -5166,7 +5169,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'arnulfo77@murphy.info',NULL,NULL,'$2y$12$NpGN8bb658xeb3up8YoRmerHboLRSqO4ScwY8ASvIxwBIrby/K3Ym',NULL,'2025-11-20 01:47:59','2025-11-20 01:47:59','Camron','Robel','admin',NULL,1,1,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'admin@nest.local',NULL,NULL,'$2y$12$dOTMUlqMOFEHKHVOyXdu4u.h45awAcqG277.ywNEdpYyh3nRd7why','yKYOihQsNVqSySwS1AeuE6P49RlpY30dJRMwJsQiwxzfi1TXuhvSHlzcPBRC','2025-11-20 01:47:59','2026-10-20 07:23:14','Camron','Robel','admin',NULL,1,1,NULL,'2026-10-20 07:23:14',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5179,11 +5182,11 @@ DROP TABLE IF EXISTS `widgets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `widgets` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `widget_id` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sidebar_id` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `theme` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `widget_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sidebar_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `theme` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `position` tinyint unsigned NOT NULL DEFAULT '0',
-  `data` text COLLATE utf8mb4_unicode_ci,
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -5197,9 +5200,13 @@ CREATE TABLE `widgets` (
 
 LOCK TABLES `widgets` WRITE;
 /*!40000 ALTER TABLE `widgets` DISABLE KEYS */;
-INSERT INTO `widgets` VALUES (1,'SiteInfoWidget','footer_sidebar','nest',0,'{\"id\":\"SiteInfoWidget\",\"name\":\"Site information\",\"about\":\"Awesome grocery store website template\",\"phone\":\"(+91) - 540-025-124553\",\"address\":\"5171 W Campbell Ave undefined Kent, Utah 53127 United States\",\"email\":\"sale@Nest.com\",\"working_hours\":\"10:00 - 18:00, Mon - Sat\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(2,'CustomMenuWidget','footer_sidebar','nest',1,'{\"id\":\"CustomMenuWidget\",\"name\":\"Company\",\"menu_id\":\"company\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(3,'CustomMenuWidget','footer_sidebar','nest',2,'{\"id\":\"CustomMenuWidget\",\"name\":\"Categories\",\"menu_id\":\"product-categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(4,'CustomMenuWidget','footer_sidebar','nest',3,'{\"id\":\"CustomMenuWidget\",\"name\":\"Information\",\"menu_id\":\"information\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(5,'InstallAppWidget','footer_sidebar','nest',3,'{\"id\":\"InstallAppWidget\",\"name\":\"Install App\",\"apps_description\":\"From App Store or Google Play\",\"ios_app_url\":\"#\",\"ios_app_image\":\"general\\/app-store.jpg\",\"android_app_url\":\"#\",\"android_app_image\":\"general\\/google-play.jpg\",\"payment_gateway_description\":\"Secured Payment Gateways\",\"payment_gateway_image\":\"general\\/payment-methods.png\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(6,'BlogSearchWidget','primary_sidebar','nest',0,'{\"id\":\"BlogSearchWidget\",\"name\":\"Search\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(7,'ProductCategoriesWidget','primary_sidebar','nest',1,'{\"id\":\"ProductCategoriesWidget\",\"name\":\"Categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(8,'TrendingProductsWidget','primary_sidebar','nest',2,'{\"id\":\"TrendingProductsWidget\",\"name\":\"Trending Now\",\"number_display\":4}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(9,'TagsWidget','primary_sidebar','nest',4,'{\"id\":\"TagsWidget\",\"name\":\"Popular Tags\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(10,'AdsWidget','primary_sidebar','nest',5,'{\"id\":\"AdsWidget\",\"name\":\"Organic\",\"ads_key\":\"IZ6WU8KUALYI\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(11,'ProductCategoriesWidget','product_sidebar','nest',1,'{\"id\":\"ProductCategoriesWidget\",\"name\":\"Categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(12,'NewProductsWidget','product_sidebar','nest',3,'{\"id\":\"NewProductsWidget\",\"name\":\"New products\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(13,'AdsWidget','product_sidebar','nest',4,'{\"id\":\"AdsWidget\",\"name\":\"Oganic\",\"ads_key\":\"IZ6WU8KUALYI\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(14,'NewsletterWidget','pre_footer_sidebar','nest',0,'{\"id\":\"NewsletterWidget\",\"title\":\"Stay home & get your daily <br \\/>needs from our shop\",\"subtitle\":\"Start Your Daily Shopping with <span>Nest Mart<\\/span>\",\"image\":\"general\\/newsletter-image.png\",\"background_image\":\"general\\/newsletter-background-image.png\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(15,'SiteFeaturesWidget','pre_footer_sidebar','nest',1,'{\"id\":\"SiteFeaturesWidget\",\"title\":\"Site Features\",\"data\":{\"1\":{\"icon\":\"general\\/icon-1.png\",\"title\":\"Best prices & offers\",\"subtitle\":\"Orders $50 or more\"},\"2\":{\"icon\":\"general\\/icon-2.png\",\"title\":\"Free delivery\",\"subtitle\":\"24\\/7 amazing services\"},\"3\":{\"icon\":\"general\\/icon-3.png\",\"title\":\"Great daily deal\",\"subtitle\":\"When you sign up\"},\"4\":{\"icon\":\"general\\/icon-4.png\",\"title\":\"Wide assortment\",\"subtitle\":\"Mega Discounts\"},\"5\":{\"icon\":\"general\\/icon-5.png\",\"title\":\"Easy returns\",\"subtitle\":\"Within 30 days\"}}}','2025-11-20 01:48:05','2025-11-20 01:48:05');
+INSERT INTO `widgets` VALUES (1,'SiteInfoWidget','footer_sidebar','nest',0,'{\"id\":\"SiteInfoWidget\",\"name\":\"Kharif\",\"about\":\"Traditionally crafted wood-pressed cooking oils for naturally better everyday cooking.\",\"phone\":\"+91 90000 00000\",\"address\":\"India\",\"email\":\"hello@kharif.in\",\"working_hours\":\"Mon \\u2013 Sat: 9 am \\u2013 6 pm\"}','2025-11-20 01:48:05','2026-10-20 07:16:35'),(2,'CustomMenuWidget','footer_sidebar','nest',1,'{\"id\":\"CustomMenuWidget\",\"name\":\"Company\",\"menu_id\":\"company\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(3,'CustomMenuWidget','footer_sidebar','nest',2,'{\"id\":\"CustomMenuWidget\",\"name\":\"Categories\",\"menu_id\":\"product-categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(4,'CustomMenuWidget','footer_sidebar','nest',3,'{\"id\":\"CustomMenuWidget\",\"name\":\"Information\",\"menu_id\":\"information\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(5,'InstallAppWidget','footer_sidebar','nest',3,'{\"id\":\"InstallAppWidget\",\"name\":\"Install App\",\"apps_description\":\"From App Store or Google Play\",\"ios_app_url\":\"#\",\"ios_app_image\":\"general\\/app-store.jpg\",\"android_app_url\":\"#\",\"android_app_image\":\"general\\/google-play.jpg\",\"payment_gateway_description\":\"Secured Payment Gateways\",\"payment_gateway_image\":\"general\\/payment-methods.png\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(6,'BlogSearchWidget','primary_sidebar','nest',0,'{\"id\":\"BlogSearchWidget\",\"name\":\"Search\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(7,'ProductCategoriesWidget','primary_sidebar','nest',1,'{\"id\":\"ProductCategoriesWidget\",\"name\":\"Categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(8,'TrendingProductsWidget','primary_sidebar','nest',2,'{\"id\":\"TrendingProductsWidget\",\"name\":\"Trending Now\",\"number_display\":4}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(9,'TagsWidget','primary_sidebar','nest',4,'{\"id\":\"TagsWidget\",\"name\":\"Popular Tags\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(10,'AdsWidget','primary_sidebar','nest',5,'{\"id\":\"AdsWidget\",\"name\":\"Organic\",\"ads_key\":\"IZ6WU8KUALYI\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(11,'ProductCategoriesWidget','product_sidebar','nest',1,'{\"id\":\"ProductCategoriesWidget\",\"name\":\"Categories\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(12,'NewProductsWidget','product_sidebar','nest',3,'{\"id\":\"NewProductsWidget\",\"name\":\"New products\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(13,'AdsWidget','product_sidebar','nest',4,'{\"id\":\"AdsWidget\",\"name\":\"Oganic\",\"ads_key\":\"IZ6WU8KUALYI\"}','2025-11-20 01:48:05','2025-11-20 01:48:05'),(14,'NewsletterWidget','pre_footer_sidebar','nest',0,'{\"id\":\"NewsletterWidget\",\"title\":\"Stay home & get your daily <br \\/>wood-pressed oils from our shop\",\"subtitle\":\"Start Your Daily Shopping with <span>Kharif<\\/span>\",\"image\":\"general\\/newsletter-image.png\",\"background_image\":\"general\\/newsletter-background-image.png\"}','2025-11-20 01:48:05','2026-10-20 07:16:35'),(15,'SiteFeaturesWidget','pre_footer_sidebar','nest',1,'{\"id\":\"SiteFeaturesWidget\",\"title\":\"Site Features\",\"data\":{\"1\":{\"icon\":\"general\\/icon-1.png\",\"title\":\"Free delivery\",\"subtitle\":\"On prepaid orders above \\u20b9999\"},\"2\":{\"icon\":\"general\\/icon-2.png\",\"title\":\"Wood-pressed\",\"subtitle\":\"Traditional small batches\"},\"3\":{\"icon\":\"general\\/icon-3.png\",\"title\":\"Natural oils\",\"subtitle\":\"Quality ingredients\"},\"4\":{\"icon\":\"general\\/icon-4.png\",\"title\":\"Secure checkout\",\"subtitle\":\"UPI, cards & COD\"},\"5\":{\"icon\":\"general\\/icon-5.png\",\"title\":\"Easy returns\",\"subtitle\":\"Quality guarantee\"}}}','2025-11-20 01:48:05','2026-10-20 07:16:35');
 /*!40000 ALTER TABLE `widgets` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'laravel'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -5210,4 +5217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-20 15:48:10
+-- Dump completed on 2026-10-20 23:42:15
